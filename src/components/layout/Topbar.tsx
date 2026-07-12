@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { NLSearchBar } from '@/components/ai/NLSearchBar'
 
 export function Topbar() {
   const [dark, setDark] = useState(false)
@@ -20,7 +21,10 @@ export function Topbar() {
     <header className="glass flex items-center justify-between px-8 py-3 rounded-xl">
       <div className="flex items-center gap-3">
         <span className="font-deva text-xl bg-gradient-to-r from-marigold to-rose bg-clip-text text-transparent">कर्मचारी</span>
-        <span className="font-display font-semibold text-lg">KaramcharHR</span>
+        <span className="font-display font-semibold text-lg hidden md:block">KaramcharHR</span>
+      </div>
+      <div className="flex-1 max-w-xl mx-4">
+        <NLSearchBar />
       </div>
       <div className="flex items-center gap-3">
         <button

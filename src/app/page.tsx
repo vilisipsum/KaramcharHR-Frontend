@@ -3,6 +3,7 @@ import { StatCard } from '@/components/ui/StatCard'
 import { ProgressRing } from '@/components/ui/ProgressRing'
 import { StatusChip } from '@/components/ui/StatusChip'
 import { Avatar } from '@/components/ui/Avatar'
+import { LeavePredictWidget } from '@/components/ai/LeavePredictWidget'
 
 export default function Dashboard() {
   return (
@@ -18,6 +19,7 @@ export default function Dashboard() {
         </StatCard>
         <StatCard label="Upcoming holiday" value="15 Aug" trend="Independence Day" />
       </div>
+      <LeavePredictWidget />
 
       <div className="grid grid-cols-3 gap-4">
         <div className="glass p-5 col-span-2">
