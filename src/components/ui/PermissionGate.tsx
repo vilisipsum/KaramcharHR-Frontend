@@ -5,7 +5,6 @@ import type { Permission, Role } from '@/lib/permissions'
 
 export function PermissionGate({ permission, fallback, children }: {
   permission?: Permission
-  minRole?: Role
   fallback?: React.ReactNode
   children: React.ReactNode
 }) {

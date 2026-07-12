@@ -15,9 +15,11 @@ export async function login(prevState: AuthState, formData: FormData): Promise<A
   if (error) return { error: error.message }
 
   // Check if user has an org set up
+  const { data: { user } } = await supabase.auth.getUser()
   const { data: profile } = await supabase
     .from('profiles')
     .select('org_id')
+    .eq('id', user?.id)
     .single()
 
   if (!profile?.org_id) {

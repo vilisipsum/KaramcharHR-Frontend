@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 
 const shifts = [
   { id: '1', name: 'Morning', start: '09:00', end: '18:00', employees: ['Rahul Bose', 'Neha Singh', 'Arjun Joshi'], color: 'from-amber-500/30 to-rose-500/30' },

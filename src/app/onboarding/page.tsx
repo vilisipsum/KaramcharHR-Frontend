@@ -30,7 +30,7 @@ export default function OnboardingPage() {
 
           <div className="field">
             <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Company Size</label>
-            <select
+            <select name="size"
               className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm">
               <option value="1-10">1-10 employees</option>
               <option value="11-50">11-50 employees</option>
@@ -42,7 +42,7 @@ export default function OnboardingPage() {
 
           <div className="field">
             <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Industry</label>
-            <select
+            <select name="industry"
               className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm">
               <option value="technology">Technology</option>
               <option value="finance">Finance & Banking</option>

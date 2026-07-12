@@ -40,10 +40,11 @@ export function CopilotChat({ className }: { className?: string }) {
       })
 
       if (!res.ok) {
-        const err = await res.json()
+        let errMsg = 'Request failed'
+        try { const err = await res.json(); errMsg = err.error } catch { errMsg = res.statusText }
         setMessages(prev => {
           const next = [...prev]
-          next[next.length - 1] = { role: 'assistant', text: `Error: ${err.error}` }
+          next[next.length - 1] = { role: 'assistant', text: `Error: ${errMsg}` }
           return next
         })
         setStreaming(false)
@@ -51,7 +52,7 @@ export function CopilotChat({ className }: { className?: string }) {
       }
 
       const reader = res.body?.getReader()
-      if (!reader) return
+      if (!reader) { setStreaming(false); return }
 
       const decoder = new TextDecoder()
       let buffer = ''

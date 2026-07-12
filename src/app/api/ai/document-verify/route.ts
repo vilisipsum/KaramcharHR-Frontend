@@ -3,26 +3,27 @@ import { NextRequest } from 'next/server'
 export const runtime = 'edge'
 
 export async function POST(req: NextRequest) {
-  const { documentType, documentNumber, documentText } = await req.json()
-  if (!documentType || !documentNumber) {
-    return Response.json({ error: 'documentType and documentNumber are required' }, { status: 400 })
-  }
-  if (!['pan', 'aadhaar', 'passport', 'driving_license', 'voter_id'].includes(documentType)) {
-    return Response.json({ error: 'Invalid document type' }, { status: 400 })
-  }
+  try {
+    const { documentType, documentNumber, documentText } = await req.json()
+    if (!documentType || !documentNumber) {
+      return Response.json({ error: 'documentType and documentNumber are required' }, { status: 400 })
+    }
+    if (!['pan', 'aadhaar', 'passport', 'driving_license', 'voter_id'].includes(documentType)) {
+      return Response.json({ error: 'Invalid document type' }, { status: 400 })
+    }
 
-  const { default: OpenAI } = await import('openai')
-  const deepseek = new OpenAI({
-    baseURL: 'https://api.deepseek.com/v1',
-    apiKey: process.env.DEEPSEEK_API_KEY,
-  })
+    const { default: OpenAI } = await import('openai')
+    const deepseek = new OpenAI({
+      baseURL: 'https://api.deepseek.com/v1',
+      apiKey: process.env.DEEPSEEK_API_KEY,
+    })
 
-  const res = await deepseek.chat.completions.create({
-    model: 'deepseek-chat',
-    messages: [
-      {
-        role: 'system',
-        content: `You are an Indian document verification AI. Analyze the document and return valid JSON:
+    const res = await deepseek.chat.completions.create({
+      model: 'deepseek-chat',
+      messages: [
+        {
+          role: 'system',
+          content: `You are an Indian document verification AI. Analyze the document and return valid JSON:
 
 {
   "verified": boolean,
@@ -39,17 +40,23 @@ Document rules:
 - Passport: 8 alphanumeric (e.g., A1234567) or J series.
 - Driving License: varies by state, typically alphanumeric.
 - Voter ID: 3 letters + 7 digits (e.g., ABC1234567).`,
-      },
-      {
-        role: 'user',
-        content: `Verify this ${documentType}: number="${documentNumber}"${documentText ? `\nfull text:\n${documentText}` : ''}`,
-      },
-    ],
-    response_format: { type: 'json_object' },
-    temperature: 0.1,
-    max_tokens: 1024,
-  })
+        },
+        {
+          role: 'user',
+          content: `Verify this ${documentType}: number="${documentNumber}"${documentText ? `\nfull text:\n${documentText}` : ''}`,
+        },
+      ],
+      response_format: { type: 'json_object' },
+      temperature: 0.1,
+      max_tokens: 1024,
+    })
 
-  const result = JSON.parse(res.choices[0]?.message?.content || '{}')
-  return Response.json(result)
+    const content = res.choices[0]?.message?.content
+    if (!content) return Response.json({ error: 'AI returned empty response' }, { status: 502 })
+
+    const result = JSON.parse(content)
+    return Response.json(result)
+  } catch (err: any) {
+    return Response.json({ error: err.message || 'Internal error' }, { status: 500 })
+  }
 }

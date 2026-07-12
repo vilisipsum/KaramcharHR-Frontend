@@ -22,8 +22,6 @@ const rolesList = [
 ]
 
 export default function RolesPage() {
-  const { role } = usePermissions()
-
   return (
     <RoleGate role="hr_manager" fallback={
       <div className="glass p-8 text-center">

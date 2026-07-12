@@ -6,7 +6,7 @@ import { usePermissions } from '@/hooks/usePermissions'
 import { RoleGate } from '@/components/ui/PermissionGate'
 import type { Permission } from '@/lib/permissions'
 
-const navItems: Array<{ label: string; href: string; icon: string; permission?: Permission; minRole?: string }> = [
+const navItems: Array<{ label: string; href: string; icon: string; permission?: Permission }> = [
   { label: 'Dashboard', href: '/', icon: '◉' },
   { label: 'Attendance', href: '/attendance', icon: '◷', permission: 'attendance.view' },
   { label: 'Shifts', href: '/attendance/shifts', icon: '🔄', permission: 'attendance.view' },
