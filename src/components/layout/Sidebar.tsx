@@ -14,6 +14,7 @@ const navItems: Array<{ label: string; href: string; icon: string; permission?: 
   { label: 'Employees', href: '/employees', icon: '⊞', permission: 'employees.view' },
   { label: 'Recruitment', href: '/recruitment', icon: '⊟', permission: 'recruitment.view' },
   { label: 'Performance', href: '/performance', icon: '★', permission: 'performance.view' },
+  { label: 'AI Copilot', href: '/copilot', icon: '✦' },
   { label: 'Reports', href: '#', icon: '▤', permission: 'reports.view' },
   { label: 'Settings', href: '/settings', icon: '⚙', permission: 'settings.view' },
 ]

@@ -1,6 +1,7 @@
 import { BackgroundBlobs } from './BackgroundBlobs'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
+import { CopilotChat } from '@/components/ai/CopilotChat'
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </main>
         </div>
       </div>
+      <CopilotChat />
     </div>
   )
 }
