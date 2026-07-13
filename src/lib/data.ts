@@ -7,19 +7,45 @@ export type DashboardStats = {
   upcomingHoliday: { name: string; date: string } | null
 }
 
+async function getOrgEmployeeIds(supabase: any, orgId: string): Promise<string[]> {
+  const { data } = await supabase
+    .from('employees')
+    .select('id')
+    .eq('org_id', orgId)
+    .eq('status', 'active')
+  return data?.map((e: any) => e.id) || []
+}
+
 export async function getDashboardStats(orgId: string): Promise<DashboardStats> {
   const supabase = await createClient()
   const today = new Date().toISOString().split('T')[0]
+  const employeeIds = await getOrgEmployeeIds(supabase, orgId)
 
-  const [employees, present, onLeave, holidays] = await Promise.all([
-    supabase.from('employees').select('id', { count: 'exact', head: true }).eq('org_id', orgId).eq('status', 'active'),
-    supabase.from('attendance').select('id', { count: 'exact', head: true }).eq('date', today).neq('status', 'absent').in('employee_id', supabase.from('employees').select('id').eq('org_id', orgId) as any),
-    supabase.from('leave_requests').select('id', { count: 'exact', head: true }).eq('status', 'approved').gte('end_date', today).lte('start_date', today).in('employee_id', supabase.from('employees').select('id').eq('org_id', orgId) as any),
+  if (employeeIds.length === 0) {
+    const { data: holidays } = await supabase
+      .from('holidays')
+      .select('name, date')
+      .eq('org_id', orgId)
+      .gte('date', today)
+      .order('date')
+      .limit(1)
+
+    return {
+      totalEmployees: 0,
+      presentCount: 0,
+      onLeaveCount: 0,
+      upcomingHoliday: holidays?.[0] ?? null,
+    }
+  }
+
+  const [present, onLeave, holidays] = await Promise.all([
+    supabase.from('attendance').select('id', { count: 'exact', head: true }).eq('date', today).neq('status', 'absent').in('employee_id', employeeIds),
+    supabase.from('leave_requests').select('id', { count: 'exact', head: true }).eq('status', 'approved').gte('end_date', today).lte('start_date', today).in('employee_id', employeeIds),
     supabase.from('holidays').select('name, date').eq('org_id', orgId).gte('date', today).order('date').limit(1),
   ])
 
   return {
-    totalEmployees: employees.count ?? 0,
+    totalEmployees: employeeIds.length,
     presentCount: present.count ?? 0,
     onLeaveCount: onLeave.count ?? 0,
     upcomingHoliday: holidays.data?.[0] ?? null,
@@ -72,11 +98,16 @@ export async function getLeaveRequests(orgId: string, options?: { status?: strin
   const { status, page = 1, limit = 20 } = options ?? {}
   const from = (page - 1) * limit
   const to = from + limit - 1
+  const employeeIds = await getOrgEmployeeIds(supabase, orgId)
+
+  if (employeeIds.length === 0) {
+    return { data: [], total: 0 }
+  }
 
   let query = supabase
     .from('leave_requests')
     .select('*, employees(first_name, last_name, employee_code), leave_types(name, code)', { count: 'exact' })
-    .in('employee_id', supabase.from('employees').select('id').eq('org_id', orgId) as any)
+    .in('employee_id', employeeIds)
     .order('created_at', { ascending: false })
     .range(from, to)
 
@@ -134,11 +165,17 @@ export async function getPayrollRunDetails(supabase: any, runId: string) {
 export async function getTodayAttendance(orgId: string) {
   const supabase = await createClient()
   const today = new Date().toISOString().split('T')[0]
+  const employeeIds = await getOrgEmployeeIds(supabase, orgId)
+
+  if (employeeIds.length === 0) {
+    return []
+  }
+
   const { data, error } = await supabase
     .from('attendance')
     .select('*, employees(first_name, last_name, employee_code, departments(name))')
     .eq('date', today)
-    .in('employee_id', supabase.from('employees').select('id').eq('org_id', orgId) as any)
+    .in('employee_id', employeeIds)
     .order('clock_in')
   if (error) throw error
   return data ?? []
@@ -292,11 +329,16 @@ export async function getExpenseClaims(orgId: string, options?: { status?: strin
   const { status, page = 1, limit = 20 } = options ?? {}
   const from = (page - 1) * limit
   const to = from + limit - 1
+  const employeeIds = await getOrgEmployeeIds(supabase, orgId)
+
+  if (employeeIds.length === 0) {
+    return { data: [], total: 0 }
+  }
 
   let query = supabase
     .from('expense_claims')
     .select('*, employees(first_name, last_name), expense_categories(name)', { count: 'exact' })
-    .in('employee_id', supabase.from('employees').select('id').eq('org_id', orgId) as any)
+    .in('employee_id', employeeIds)
     .order('created_at', { ascending: false })
     .range(from, to)
 
@@ -345,13 +387,18 @@ export async function getAttendanceStats(orgId: string, days = 30) {
   const supabase = await createClient()
   const endDate = new Date().toISOString().split('T')[0]
   const startDate = new Date(Date.now() - days * 86400000).toISOString().split('T')[0]
+  const employeeIds = await getOrgEmployeeIds(supabase, orgId)
+
+  if (employeeIds.length === 0) {
+    return { stats: {}, total: 0 }
+  }
 
   const { data, error } = await supabase
     .from('attendance')
     .select('date, status, employee_id')
     .gte('date', startDate)
     .lte('date', endDate)
-    .in('employee_id', supabase.from('employees').select('id').eq('org_id', orgId) as any)
+    .in('employee_id', employeeIds)
   if (error) throw error
 
   const stats = data?.reduce((acc, a) => {
@@ -364,14 +411,13 @@ export async function getAttendanceStats(orgId: string, days = 30) {
 
 export async function getUserLeaveBalances(orgId: string, userId: string) {
   const supabase = await createClient()
-  const { data: employee } = await supabase
-    .from('employees')
-    .select('id')
-    .eq('profiles.id', userId)
-    .eq('org_id', orgId)
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('employee_id')
+    .eq('id', userId)
     .single()
 
-  if (!employee) return []
+  if (!profile?.employee_id) return []
 
-  return getLeaveBalances(supabase, employee.id)
+  return getLeaveBalances(supabase, profile.employee_id)
 }
