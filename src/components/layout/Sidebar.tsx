@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { usePermissions } from '@/hooks/usePermissions'
 import { RoleGate } from '@/components/ui/PermissionGate'
+import { LogoHorizontal } from '@/components/brand/LogoHorizontal'
 import type { Permission } from '@/lib/permissions'
-import { Logo } from '@/components/ui/Logo'
 
 const navItems: Array<{ label: string; href: string; icon: string; permission?: Permission }> = [
   { label: 'Dashboard', href: '/', icon: '◉' },
@@ -32,9 +32,8 @@ export function Sidebar() {
 
   return (
     <aside className="glass p-5 flex flex-col gap-2 h-full min-w-[200px]">
-      <div className="font-display font-semibold mb-6 flex items-center gap-2 text-lg">
-        <Logo className="w-8 h-8" />
-        KaramcharHR
+      <div className="mb-6">
+        <LogoHorizontal size="sm" showTagline={false} />
       </div>
       {navItems.map((item) => {
         if (item.permission && !can(item.permission)) return null
