@@ -53,13 +53,15 @@ export async function signup(prevState: AuthState, formData: FormData): Promise<
 }
 
 export async function setupOrganization(prevState: AuthState, formData: FormData): Promise<AuthState> {
+  // Retrieve user session using standard client
+  const standardClient = await createClient(false)
+  const { data: { user } } = await standardClient.auth.getUser()
+  if (!user) return { error: 'Not authenticated' }
+
   // Use admin client with service role to bypass organizations RLS policy during onboarding setup
   const supabase = await createClient(true)
   const name = formData.get('name') as string
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return { error: 'Not authenticated' }
 
   // Create organization
   const { data: org, error: orgError } = await supabase
@@ -120,3 +122,28 @@ export async function signout() {
   revalidatePath('/', 'layout')
   redirect('/auth/login')
 }
+
+export async function forgotPassword(prevState: AuthState, formData: FormData): Promise<AuthState> {
+  const supabase = await createClient()
+  const email = formData.get('email') as string
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password`,
+  })
+
+  if (error) return { error: error.message }
+  return { error: 'Reset link sent! Please check your email inbox.' }
+}
+
+export async function updatePassword(prevState: AuthState, formData: FormData): Promise<AuthState> {
+  const supabase = await createClient()
+  const password = formData.get('password') as string
+
+  const { error } = await supabase.auth.updateUser({ password })
+  if (error) return { error: error.message }
+
+  revalidatePath('/', 'layout')
+  redirect('/auth/login')
+}
+
+

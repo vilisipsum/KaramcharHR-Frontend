@@ -1,12 +1,26 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useState, useEffect } from 'react'
+import { createBrowserClient } from '@supabase/ssr'
 import { setupOrganization } from '../auth/actions'
 import { BackgroundBlobs } from '@/components/layout/BackgroundBlobs'
 import { LogoHorizontal } from '@/components/brand/LogoHorizontal'
 
 export default function OnboardingPage() {
   const [state, formAction, pending] = useActionState(setupOrganization, null)
+  const [defaultName, setDefaultName] = useState('')
+
+  useEffect(() => {
+    const supabase = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+    )
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user?.user_metadata?.company_name) {
+        setDefaultName(user.user_metadata.company_name)
+      }
+    })
+  }, [])
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
@@ -27,7 +41,7 @@ export default function OnboardingPage() {
 
           <div className="field">
             <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Company Name</label>
-            <input name="name" type="text" placeholder="Acme Corp" required
+            <input name="name" type="text" placeholder="Acme Corp" required value={defaultName} onChange={(e) => setDefaultName(e.target.value)}
               className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />
           </div>
 
