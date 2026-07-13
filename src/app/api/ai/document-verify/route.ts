@@ -1,9 +1,24 @@
 import { NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
 
 export const runtime = 'edge'
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll() { return req.cookies.getAll() },
+          setAll() {},
+        },
+      }
+    )
+
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    if (authError || !user) return Response.json({ error: 'Unauthorized' }, { status: 401 })
+
     const { documentType, documentNumber, documentText } = await req.json()
     if (!documentType || !documentNumber) {
       return Response.json({ error: 'documentType and documentNumber are required' }, { status: 400 })
