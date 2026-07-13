@@ -51,7 +51,7 @@ export default function ExpensesPage() {
 
       {showForm && (
         <form onSubmit={submitClaim} className="glass rounded-2xl p-6 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-white/50 mb-1 block">Category</label>
               <select value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-amber-500/50">
@@ -104,7 +104,7 @@ export default function ExpensesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="glass rounded-2xl p-5 text-center">
           <div className="text-2xl font-bold text-white">₹{expenses.filter(e => e.status === 'pending').reduce((s, e) => s + e.amount, 0).toLocaleString('en-IN')}</div>
           <div className="text-xs text-white/40 mt-1">Pending Approval</div>

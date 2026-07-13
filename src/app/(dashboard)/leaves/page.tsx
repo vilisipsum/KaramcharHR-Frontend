@@ -12,10 +12,10 @@ export default function LeavesPage() {
         <StatCard label="Earned Leave" value={<>11 <span className="text-muted-foreground text-sm">/ 15</span></>} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="glass p-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="glass p-5 overflow-x-auto">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Recent requests</div>
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[400px]">
             <thead>
               <tr className="font-mono text-[10px] uppercase text-muted-foreground border-b border-border">
                 <th className="text-left py-2.5 px-3">Employee</th>

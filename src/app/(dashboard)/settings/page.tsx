@@ -4,10 +4,10 @@ import { GoogleBusinessProfileCard } from '@/components/layout/GoogleBusinessPro
 export default function SettingsPage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="glass p-5 col-span-2">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-6">Organization Settings</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="field">
               <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Company Name</label>
               <input type="text" defaultValue="Acme Corp" className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />

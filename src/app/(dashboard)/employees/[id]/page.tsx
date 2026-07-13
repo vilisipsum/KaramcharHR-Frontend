@@ -8,7 +8,7 @@ import { StatusChip } from '@/components/ui/StatusChip'
 export default function EmployeeProfilePage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="glass p-6 col-span-1">
           <div className="flex flex-col items-center gap-3">
             <Avatar initials="AS" size="lg" />
@@ -34,7 +34,7 @@ export default function EmployeeProfilePage() {
         <div className="col-span-2 space-y-4">
           <div className="glass p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Identity & Bank Details</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {[{ k: 'PAN', v: 'ABCPS1234K' }, { k: 'Aadhaar', v: 'XXXX XXXX 8842' }, { k: 'UAN', v: '100488229100' }, { k: 'PF Account', v: 'MH/123456/789' }, { k: 'Bank Account', v: 'HDFC Bank ••4471' }, { k: 'IFSC Code', v: 'HDFC0001234' }].map((item, i) => (
                 <div key={i} className="p-2.5 rounded-sm" style={{ background: 'rgba(36,27,78,0.04)' }}>
                   <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">{item.k}</div>
@@ -44,7 +44,7 @@ export default function EmployeeProfilePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="glass p-5">
               <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Salary Summary</div>
               <div className="space-y-3">
@@ -62,7 +62,7 @@ export default function EmployeeProfilePage() {
 
           <div className="glass p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Documents</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {[{ n: 'Aadhaar Card', s: 'verified' }, { n: 'PAN Card', s: 'verified' }, { n: 'Offer Letter', s: 'verified' }, { n: 'Education', s: 'pending' }].map((d, i) => (
                 <div key={i} className="glass-strong rounded-lg p-4 text-center">
                   <div className="text-2xl mb-1">{d.s === 'verified' ? '✓' : '○'}</div>

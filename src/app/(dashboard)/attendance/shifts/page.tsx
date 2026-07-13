@@ -96,7 +96,7 @@ export default function ShiftsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="glass rounded-2xl p-4">
           <div className="text-lg font-bold text-white">4</div>
           <div className="text-xs text-white/50">Active Shift Patterns</div>

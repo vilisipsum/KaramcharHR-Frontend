@@ -52,7 +52,7 @@ export default function ResumeScreeningPage() {
         <p className="text-white/60">Paste a resume to extract candidate data and match against job openings</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass rounded-2xl p-6 space-y-4">
           <div>
             <label className="text-sm font-semibold text-white mb-2 block">Resume Text</label>
@@ -117,7 +117,7 @@ export default function ResumeScreeningPage() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <Field label="Name" value={result.name} />
                 <Field label="Email" value={result.email} />
                 <Field label="Phone" value={result.phone} />
