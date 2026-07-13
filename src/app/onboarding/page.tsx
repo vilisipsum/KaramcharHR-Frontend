@@ -3,6 +3,7 @@
 import { useActionState } from 'react'
 import { setupOrganization } from '../auth/actions'
 import { BackgroundBlobs } from '@/components/layout/BackgroundBlobs'
+import { LogoHorizontal } from '@/components/brand/LogoHorizontal'
 
 export default function OnboardingPage() {
   const [state, formAction, pending] = useActionState(setupOrganization, null)
@@ -12,7 +13,9 @@ export default function OnboardingPage() {
       <BackgroundBlobs />
       <div className="relative z-10 glass p-8 w-full max-w-lg">
         <div className="text-center mb-8">
-          <div className="font-deva text-3xl bg-gradient-to-r from-marigold to-rose bg-clip-text text-transparent">कर्मचारी</div>
+          <div className="flex justify-center mb-2">
+            <LogoHorizontal size="md" showTagline={false} />
+          </div>
           <div className="font-display font-semibold text-xl mt-1">Set up your organization</div>
           <p className="text-sm text-muted-foreground mt-2">Welcome! Let&apos;s get your company set up in KaramcharHR.</p>
         </div>

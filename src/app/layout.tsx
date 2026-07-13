@@ -5,6 +5,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'KaramcharHR — Employee-first HRMS for India',
   description: 'Glassmorphic HRMS system for the Indian market',
+  icons: { icon: '/icon.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

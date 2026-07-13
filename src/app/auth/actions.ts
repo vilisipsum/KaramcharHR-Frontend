@@ -42,6 +42,7 @@ export async function signup(prevState: AuthState, formData: FormData): Promise<
     password,
     options: {
       data: { full_name: email.split('@')[0], company_name: company, role: 'org_admin' },
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
     },
   })
 
