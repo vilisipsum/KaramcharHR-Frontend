@@ -107,7 +107,7 @@ export function CopilotChat({ className }: { className?: string }) {
       )}
 
       {isOpen && (
-        <div className={`fixed bottom-6 right-6 z-50 w-[420px] max-w-[calc(100vw-2rem)] glass-strong rounded-2xl shadow-2xl flex flex-col ${className}`} style={{ height: '600px', maxHeight: 'calc(100vh - 6rem)' }}>
+        <div className={`fixed bottom-6 right-6 z-50 w-full sm:max-w-[420px] glass-strong rounded-2xl shadow-2xl flex flex-col ${className}`} style={{ height: '100%', maxHeight: 'calc(100vh - 4rem)' }}>
           <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-white text-xs font-bold">

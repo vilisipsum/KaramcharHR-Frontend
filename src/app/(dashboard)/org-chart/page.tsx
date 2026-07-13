@@ -81,12 +81,12 @@ export default function OrgChartPage() {
       </div>
 
       <div className="glass rounded-2xl p-8 overflow-x-auto">
-        <div className="flex justify-center min-w-[600px]">
+        <div className="flex justify-center min-w-[600px] max-w-full">
           <OrgNode node={orgData} />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="glass rounded-2xl p-5 flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center text-teal text-lg">👥</div>
           <div>

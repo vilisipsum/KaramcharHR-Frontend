@@ -8,7 +8,7 @@ import { LeavePredictWidget } from '@/components/ai/LeavePredictWidget'
 export default function Dashboard() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard label="Present today" value="118 / 132" trend="89% headcount" />
         <StatCard label="On leave" value="9">
           <div className="flex gap-2 flex-wrap">
@@ -21,7 +21,7 @@ export default function Dashboard() {
       </div>
       <LeavePredictWidget />
 
-      <div className="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="glass p-5 col-span-1 lg:col-span-2">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Attendance — last 14 days</div>
           <div className="overflow-x-auto pb-1">
@@ -37,13 +37,13 @@ export default function Dashboard() {
 
         <div className="glass p-5 flex flex-col items-center justify-center gap-4">
           <ProgressRing value={86} label="8h 40m" sublabel="CLOCKED IN" />
-          <button className="btn btn-primary w-full">Punch Out</button>
+          <button className="btn btn-primary w-full sm:w-auto">Punch Out</button>
         </div>
       </div>
 
       <div className="glass p-5">
         <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Employee Spotlight</div>
-        <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {[
             { initials: 'AS', name: 'Ananya Sharma', role: 'Product Design' },
             { initials: 'RK', name: 'Rohit Kulkarni', role: 'Engineering', idx: 1 },

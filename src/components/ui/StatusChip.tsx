@@ -31,9 +31,9 @@ const statusConfig: Record<StatusType, { dot: string; label: string }> = {
 export function StatusChip({ type, label }: { type: StatusType; label?: string }) {
   const s = statusConfig[type]
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
+    <span className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-full min-h-[28px] sm:px-3 sm:py-1.5"
       style={{ background: `${s.dot}15`, color: s.dot }}>
-      <span className="w-1.5 h-1.5 rounded-full" style={{ background: s.dot }} />
+      <span className="w-2 h-2 rounded-full" style={{ background: s.dot }} />
       {label || s.label}
     </span>
   )

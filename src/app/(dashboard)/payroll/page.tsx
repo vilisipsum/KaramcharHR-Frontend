@@ -4,7 +4,7 @@ import { StatusChip } from '@/components/ui/StatusChip'
 export default function PayrollPage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="glass p-5">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Payslip — July 2026 · Ananya Sharma</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -35,9 +35,9 @@ export default function PayrollPage() {
           </div>
         </div>
 
-        <div className="glass p-5">
+        <div className="glass p-5 overflow-x-auto">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Payroll run — July 2026</div>
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[400px]">
             <thead>
               <tr className="font-mono text-[10px] uppercase text-muted-foreground border-b border-border">
                 <th className="text-left py-2.5 px-3">Department</th>

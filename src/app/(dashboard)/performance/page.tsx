@@ -28,7 +28,7 @@ export default function PerformancePage() {
     <DashboardLayout>
       <div className="glass p-5 mb-4">
         <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Appraisal Cycles</div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
           {cycles.map((c, i) => (
             <div key={i} className="glass-strong rounded-lg p-4">
               <div className="font-semibold text-sm">{c.name}</div>
@@ -39,7 +39,7 @@ export default function PerformancePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
         <div className="glass p-5">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Q3 Reviews — In Progress</div>
           <div className="space-y-3">
@@ -83,7 +83,7 @@ export default function PerformancePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatCard label="Avg Self Rating" value="3.8" trend="Q3 FY 2025-26" />
         <StatCard label="Avg Manager Rating" value="4.2" trend="↑ 0.3 from Q2" />
         <StatCard label="Reviews Completed" value="42 / 132" trend="32% completion" />
