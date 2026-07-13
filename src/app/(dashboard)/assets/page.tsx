@@ -46,7 +46,7 @@ export default function AssetsPage() {
       </div>
 
       {view === 'grid' ? (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map(a => (
             <div key={a.id} className="glass rounded-2xl p-5 space-y-3 hover:border-amber-500/20 transition-all cursor-pointer">
               <div className="flex items-start justify-between">
@@ -95,7 +95,7 @@ export default function AssetsPage() {
         </div>
       )}
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="glass rounded-2xl p-4 text-center">
           <div className="text-lg font-bold text-white">{assets.length}</div>
           <div className="text-[10px] text-white/40 mt-0.5">Total Assets</div>

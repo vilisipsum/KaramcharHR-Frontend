@@ -14,7 +14,7 @@ export default function RecruitmentPage() {
     <DashboardLayout>
       <div className="glass p-5 mb-4">
         <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Candidate pipeline — Product Designer, Noida</div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { title: 'Applied · 24', candidates: [{ i: 'KV', n: 'Kavya Verma', r: '4y exp' }, { i: 'AJ', n: 'Arjun Joshi', r: '2y exp' }] },
             { title: 'Interview · 8', candidates: [{ i: 'NS', n: 'Neha Singh', r: '5y exp' }] },

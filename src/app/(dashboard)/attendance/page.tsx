@@ -6,13 +6,13 @@ import { StatusChip } from '@/components/ui/StatusChip'
 export default function AttendancePage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard label="Present today" value="118 / 132" trend="89% headcount" />
         <StatCard label="On leave" value="9" />
         <StatCard label="Late arrivals" value="3" trend="↓ 2 from yesterday" />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="glass p-5 flex flex-col items-center justify-center gap-4">
           <ProgressRing value={86} label="8h 40m" sublabel="CLOCKED IN" />
           <button className="btn btn-primary">Punch Out</button>

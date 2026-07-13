@@ -6,13 +6,13 @@ import { Avatar } from '@/components/ui/Avatar'
 export default function LeavesPage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard label="Casual Leave" value={<>4.5 <span className="text-muted-foreground text-sm">/ 12</span></>} />
         <StatCard label="Sick Leave" value={<>6 <span className="text-muted-foreground text-sm">/ 10</span></>} />
         <StatCard label="Earned Leave" value={<>11 <span className="text-muted-foreground text-sm">/ 15</span></>} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="glass p-5">
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Recent requests</div>
           <table className="w-full text-sm">

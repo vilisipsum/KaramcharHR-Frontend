@@ -65,7 +65,7 @@ const iconConfig: Record<string, { component: any; colorClass: string; bgClass: 
   'Team & Roles': { component: Shield, colorClass: 'text-indigo-500', bgClass: 'bg-indigo-500/10 border-indigo-500/20 shadow-[0_0_10px_rgba(99,102,241,0.15)]' }
 }
 
-export function Sidebar() {
+export function Sidebar({ onClose }: { onClose?: () => void }) {
   const path = usePathname()
   const { can } = usePermissions()
 
@@ -85,6 +85,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
                 active
                   ? 'bg-gradient-to-r from-marigold/10 to-rose/10 text-foreground border border-border/30 shadow-[0_0_15px_rgba(255,168,39,0.05)]'
@@ -109,6 +110,7 @@ export function Sidebar() {
             return (
               <Link
                 href="/settings/roles"
+                onClick={onClose}
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
                   active
                     ? 'bg-gradient-to-r from-marigold/10 to-rose/10 text-foreground border border-border/30 shadow-[0_0_15px_rgba(255,168,39,0.05)]'

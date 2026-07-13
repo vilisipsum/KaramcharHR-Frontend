@@ -58,9 +58,9 @@ export default function DocumentVerifyPage() {
         <p className="text-white/60">AI-powered validation of Indian government documents</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="glass rounded-2xl p-6 space-y-4">
-          <div className="grid grid-cols-5 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
             {(Object.entries(docLabels) as [DocType, string][]).map(([key, label]) => (
               <button
                 key={key}
@@ -138,7 +138,7 @@ export default function DocumentVerifyPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <div className="text-xs text-white/40">Confidence</div>
                   <div className={`text-sm font-semibold ${

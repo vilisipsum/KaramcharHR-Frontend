@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Logo } from '@/components/ui/Logo'
 import { NLSearchBar } from '@/components/ai/NLSearchBar'
 
-export function Topbar() {
+export function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
@@ -21,6 +21,13 @@ export function Topbar() {
   return (
     <header className="glass flex items-center justify-between px-8 py-3 rounded-xl">
       <div className="flex items-center gap-3">
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-1.5 hover:bg-white/10 dark:hover:bg-white/5 rounded-lg text-foreground border border-border/20 mr-1 cursor-pointer flex items-center justify-center"
+          title="Open Menu"
+        >
+          <span className="text-lg">☰</span>
+        </button>
         <Logo className="w-6 h-6" />
         <span className="font-display font-semibold text-lg hidden md:block">KaramcharHR</span>
       </div>
