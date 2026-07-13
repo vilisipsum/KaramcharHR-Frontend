@@ -1,4 +1,5 @@
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
+import { GoogleBusinessProfileCard } from '@/components/layout/GoogleBusinessProfileCard'
 
 export default function SettingsPage() {
   return (
@@ -88,6 +89,8 @@ export default function SettingsPage() {
             ))}
           </div>
         </div>
+
+        <GoogleBusinessProfileCard />
       </div>
     </DashboardLayout>
   )
