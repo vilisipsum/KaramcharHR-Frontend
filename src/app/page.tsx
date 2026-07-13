@@ -1,10 +1,11 @@
+import { redirect } from 'next/navigation'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { DashboardContent } from './dashboard-content'
 
 export default async function Dashboard() {
   const supabase = await import('@/lib/server').then(m => m.createClient())
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return null
+  if (!user) redirect('/auth/login')
 
   const { data: profile } = await supabase
     .from('profiles')
@@ -12,7 +13,7 @@ export default async function Dashboard() {
     .eq('id', user.id)
     .single()
 
-  if (!profile?.org_id) return null
+  if (!profile?.org_id) redirect('/auth/login')
 
   const { getDashboardStats, getTodayAttendance, getUserLeaveBalances } = await import('@/lib/data')
   
