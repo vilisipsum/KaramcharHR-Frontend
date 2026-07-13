@@ -52,7 +52,8 @@ export async function signup(prevState: AuthState, formData: FormData): Promise<
 }
 
 export async function setupOrganization(prevState: AuthState, formData: FormData): Promise<AuthState> {
-  const supabase = await createClient()
+  // Use admin client with service role to bypass organizations RLS policy during onboarding setup
+  const supabase = await createClient(true)
   const name = formData.get('name') as string
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
