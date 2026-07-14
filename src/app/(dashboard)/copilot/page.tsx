@@ -92,8 +92,8 @@ export default function CopilotPage() {
   return (
     <div className="flex flex-col h-full">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">HR Copilot</h1>
-        <p className="text-white/60">AI-powered HR assistant for your organization</p>
+        <h1 className="text-2xl font-bold text-slate-800">HR Copilot</h1>
+        <p className="text-slate-500">AI-powered HR assistant for your organization</p>
       </div>
 
       <div className="flex-1 glass rounded-2xl flex flex-col overflow-hidden min-h-0">
@@ -103,7 +103,7 @@ export default function CopilotPage() {
               <div className={`max-w-[75%] rounded-2xl px-5 py-3 text-sm leading-relaxed ${
                 msg.role === 'user'
                   ? 'bg-gradient-to-br from-amber-500/20 to-rose-500/20 text-white border border-amber-500/20'
-                  : 'bg-white/5 text-white/90 border border-white/10'
+                  : 'bg-slate-50 border border-slate-100 text-slate-800 border border-slate-200/60'
               }`}>
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`text-xs font-semibold ${msg.role === 'user' ? 'text-amber-400' : 'text-rose-400'}`}>
@@ -123,24 +123,24 @@ export default function CopilotPage() {
           <div ref={bottomRef} />
         </div>
 
-        <form onSubmit={send} className="px-6 py-4 border-t border-white/10">
+        <form onSubmit={send} className="px-6 py-4 border-t border-slate-200/60">
           <div className="flex gap-3">
             <input
               value={input}
               onChange={e => setInput(e.target.value)}
               placeholder="Ask me anything about HR, payroll, leave policies..."
               disabled={streaming}
-              className="flex-1 bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors disabled:opacity-50"
+              className="flex-1 bg-white border border-slate-200/60 rounded-xl px-5 py-3 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors disabled:opacity-50"
             />
             <button
               type="submit"
               disabled={streaming || !input.trim()}
-              className="px-6 py-3 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all whitespace-nowrap"
+              className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all whitespace-nowrap"
             >
               {streaming ? 'Thinking...' : 'Send'}
             </button>
           </div>
-          <p className="mt-2 text-xs text-white/20">
+          <p className="mt-2 text-xs text-slate-800/20">
             Ask about leave balances, payroll, attendance, HR policies, recruitment, or performance reviews.
           </p>
         </form>

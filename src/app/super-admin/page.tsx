@@ -10,7 +10,7 @@ export default async function SuperAdminOverview() {
 
   const planColors: Record<string, string> = {
     trial: 'text-amber-400 bg-amber-400/10 border-amber-400/20',
-    free: 'text-zinc-400 bg-zinc-400/10 border-zinc-400/20',
+    free: 'text-slate-500 bg-zinc-400/10 border-zinc-400/20',
     starter: 'text-teal bg-teal/10 border-teal/20',
     professional: 'text-indigo bg-indigo/10 border-indigo/20',
     enterprise: 'text-marigold bg-marigold/10 border-marigold/20',
@@ -29,8 +29,8 @@ export default async function SuperAdminOverview() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight">Platform Overview</h1>
-        <p className="text-sm text-muted-foreground mt-1">Real-time snapshot of all KaramcharHR tenants</p>
+        <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">Platform Overview</h1>
+        <p className="text-sm text-slate-500 mt-1">Real-time snapshot of all KaramcharHR tenants</p>
       </div>
 
       {/* Stats Grid */}
@@ -43,8 +43,8 @@ export default async function SuperAdminOverview() {
                 <Icon className={`w-5 h-5 ${card.color}`} />
               </div>
               <div>
-                <p className="text-2xl font-extrabold text-white font-mono">{card.value}</p>
-                <p className="text-xs text-muted-foreground font-semibold mt-0.5">{card.label}</p>
+                <p className="text-2xl font-extrabold text-slate-800 font-mono">{card.value}</p>
+                <p className="text-xs text-slate-500 font-semibold mt-0.5">{card.label}</p>
               </div>
             </div>
           )
@@ -53,10 +53,10 @@ export default async function SuperAdminOverview() {
 
       {/* Plan Distribution */}
       <div className="glass rounded-2xl p-6">
-        <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-4">Plan Distribution</h2>
+        <h2 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-4">Plan Distribution</h2>
         <div className="flex flex-wrap gap-3">
           {Object.entries(stats.planDistribution).map(([plan, count]) => (
-            <div key={plan} className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold ${planColors[plan] ?? 'text-zinc-400 bg-zinc-400/10 border-zinc-400/20'}`}>
+            <div key={plan} className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold ${planColors[plan] ?? 'text-slate-500 bg-zinc-400/10 border-zinc-400/20'}`}>
               <span className="capitalize">{plan}</span>
               <span className="opacity-60">·</span>
               <span>{count} org{count !== 1 ? 's' : ''}</span>
@@ -68,7 +68,7 @@ export default async function SuperAdminOverview() {
       {/* Recent Organizations */}
       <div className="glass rounded-2xl overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-border/20">
-          <h2 className="text-sm font-bold text-white uppercase tracking-widest">Recent Organizations</h2>
+          <h2 className="text-sm font-bold text-slate-800 uppercase tracking-widest">Recent Organizations</h2>
           <Link href="/super-admin/organizations" className="text-xs text-marigold hover:text-amber font-bold transition-colors">
             View all →
           </Link>
@@ -85,16 +85,16 @@ export default async function SuperAdminOverview() {
               >
                 {/* Org Avatar */}
                 <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo/40 to-marigold/20 flex items-center justify-center shrink-0">
-                  <span className="text-xs font-extrabold text-white">{org.name.slice(0, 2).toUpperCase()}</span>
+                  <span className="text-xs font-extrabold text-slate-800">{org.name.slice(0, 2).toUpperCase()}</span>
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white group-hover:text-marigold transition-colors truncate">{org.name}</p>
-                  <p className="text-xs text-muted-foreground">{new Date(org.created_at).toLocaleDateString('en-IN')}</p>
+                  <p className="text-sm font-semibold text-slate-800 group-hover:text-marigold transition-colors truncate">{org.name}</p>
+                  <p className="text-xs text-slate-500">{new Date(org.created_at).toLocaleDateString('en-IN')}</p>
                 </div>
 
                 {/* Plan badge */}
-                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase border ${planColors[org.plan] ?? 'text-zinc-400 bg-zinc-400/10 border-zinc-400/20'}`}>
+                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase border ${planColors[org.plan] ?? 'text-slate-500 bg-zinc-400/10 border-zinc-400/20'}`}>
                   {org.plan}
                 </span>
 

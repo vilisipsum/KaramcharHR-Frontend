@@ -23,7 +23,7 @@ export function ProgressRing({ value, label, sublabel, size = 96 }: {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <b className="font-display text-lg">{label}</b>
-        {sublabel && <span className="text-[9px] text-muted-foreground font-mono tracking-wider uppercase">{sublabel}</span>}
+        {sublabel && <span className="text-[9px] text-slate-500 font-mono tracking-wider uppercase">{sublabel}</span>}
       </div>
     </div>
   )

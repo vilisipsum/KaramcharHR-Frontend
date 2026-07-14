@@ -12,8 +12,8 @@ export default async function OrganizationsPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight">Organizations</h1>
-        <p className="text-sm text-muted-foreground mt-1">{orgs.length} organizations found</p>
+        <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">Organizations</h1>
+        <p className="text-sm text-slate-500 mt-1">{orgs.length} organizations found</p>
       </div>
       <OrgListClient orgs={orgs} />
     </div>

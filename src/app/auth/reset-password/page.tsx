@@ -10,7 +10,7 @@ export default function ResetPasswordPage() {
     <form action={formAction} className="space-y-4">
       <div className="text-center mb-6">
         <h2 className="text-lg font-bold text-foreground">Choose New Password</h2>
-        <p className="text-xs text-muted-foreground mt-1">Please enter your new security password below.</p>
+        <p className="text-xs text-slate-500 mt-1">Please enter your new security password below.</p>
       </div>
 
       {state?.error && (
@@ -18,7 +18,7 @@ export default function ResetPasswordPage() {
       )}
 
       <div className="field">
-        <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">New Password</label>
+        <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">New Password</label>
         <input name="password" type="password" placeholder="••••••••" required minLength={6}
           className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />
       </div>

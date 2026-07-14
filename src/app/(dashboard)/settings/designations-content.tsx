@@ -77,7 +77,7 @@ export function DesignationsContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search designations..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); setFormData({ title: '', level: 1 }); setShowForm(true) }}>
@@ -115,8 +115,8 @@ export function DesignationsContent() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-semibold text-white">{d.title}</span>
-                        <span className="px-2 py-0.5 text-xs bg-gray-600/50 text-white/80 rounded">Level {d.level}</span>
+                        <span className="font-semibold text-slate-800">{d.title}</span>
+                        <span className="px-2 py-0.5 text-xs bg-gray-600/50 text-slate-700 rounded">Level {d.level}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1">

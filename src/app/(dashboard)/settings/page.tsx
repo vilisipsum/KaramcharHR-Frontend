@@ -48,8 +48,8 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Settings</h1>
-        <p className="text-white/60 mt-1">Manage your organization settings and configuration</p>
+        <h1 className="text-2xl font-bold text-slate-800">Settings</h1>
+        <p className="text-slate-500 mt-1">Manage your organization settings and configuration</p>
       </div>
 
       <Tabs defaultValue="general" className="w-full">
@@ -301,8 +301,8 @@ function NotificationSetting({ title, description, enabled }: { title: string; d
   return (
     <div className="flex items-center justify-between p-4 glass rounded-lg">
       <div className="space-y-1">
-        <p className="font-medium text-white">{title}</p>
-        <p className="text-sm text-white/60">{description}</p>
+        <p className="font-medium text-slate-800">{title}</p>
+        <p className="text-sm text-slate-500">{description}</p>
       </div>
       <Switch
         checked={isEnabled}
@@ -329,7 +329,7 @@ function OrganizationSettingsTab() {
             <div className="space-y-2">
               <Label htmlFor="orgSlug">Slug</Label>
               <Input id="orgSlug" placeholder="org-slug" disabled />
-              <p className="text-sm text-white/50">Used in your organization URL</p>
+              <p className="text-sm text-slate-400">Used in your organization URL</p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="orgEmail">Contact Email</Label>
@@ -350,10 +350,10 @@ function OrganizationSettingsTab() {
             <Label>Logo</Label>
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <span className="text-white/40">Logo</span>
+                <span className="text-slate-800/40">Logo</span>
               </div>
               <Button variant="outline">Upload Logo</Button>
-              <p className="text-sm text-white/50">Recommended: 200x200px, PNG or SVG</p>
+              <p className="text-sm text-slate-400">Recommended: 200x200px, PNG or SVG</p>
             </div>
           </div>
         </CardContent>
@@ -484,7 +484,7 @@ function HRSettingsTab() {
                   {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map(day => (
                     <label key={day} className="inline-flex items-center gap-2 px-3 py-1.5 glass rounded border border-gray-600 cursor-pointer">
                       <input type="checkbox" className="w-4 h-4 accent-amber-500" defaultChecked={day === 'Sunday'} />
-                      <span className="text-sm text-white">{day}</span>
+                      <span className="text-sm text-slate-800">{day}</span>
                     </label>
                   ))}
                 </div>
@@ -634,8 +634,8 @@ function PolicySetting({
     <div className="glass p-4 rounded-lg">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
-          <p className="font-medium text-white">{title}</p>
-          <p className="text-sm text-white/60 mt-1">{description}</p>
+          <p className="font-medium text-slate-800">{title}</p>
+          <p className="text-sm text-slate-500 mt-1">{description}</p>
         </div>
         {multiSelect ? (
           <div className="flex flex-wrap gap-2">
@@ -652,7 +652,7 @@ function PolicySetting({
                     setValue(vals.join(', '))
                   }}
                 />
-                <span className="text-sm text-white">{opt}</span>
+                <span className="text-sm text-slate-800">{opt}</span>
               </label>
             ))}
           </div>
@@ -672,7 +672,7 @@ function PolicySetting({
 function StatutoryConfig({ title, fields }: { title: string; fields: any[] }) {
   return (
     <div className="glass p-4 rounded-lg">
-      <h4 className="font-medium text-white mb-4">{title}</h4>
+      <h4 className="font-medium text-slate-800 mb-4">{title}</h4>
       <div className="space-y-3">
         {fields.map((field, i) => (
           <div key={i} className="space-y-1">
@@ -754,7 +754,7 @@ function IntegrationsSettingsTab() {
               </SelectContent>
             </Select>
           </div>
-          <p className="text-white/50 text-sm">SSO configuration requires admin setup. Contact support for assistance.</p>
+          <p className="text-slate-400 text-sm">SSO configuration requires admin setup. Contact support for assistance.</p>
         </CardContent>
       </Card>
 
@@ -806,7 +806,7 @@ function WebhookConfig() {
             <Input placeholder="Secret" type="password" value={wh.secret} onChange={(e) => { const n=[...webhooks]; n[i]={...wh, secret: e.target.value}; setWebhooks(n) }} />
             <div className="flex items-center gap-2">
               <Switch checked={wh.active} onCheckedChange={(c) => { const n=[...webhooks]; n[i]={...wh, active: c}; setWebhooks(n) }} />
-              <span className="text-sm text-white/70">Active</span>
+              <span className="text-sm text-slate-600">Active</span>
             </div>
           </div>
           <Button variant="ghost" size="icon" onClick={() => { const n=[...webhooks]; n.splice(i,1); setWebhooks(n) }}>
@@ -832,7 +832,7 @@ function ApiKeysList() {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h4 className="font-medium text-white">API Keys</h4>
+        <h4 className="font-medium text-slate-800">API Keys</h4>
         <Button size="sm" onClick={() => alert('Generate new API key')}>Generate Key</Button>
       </div>
       <div className="space-y-2">
@@ -840,24 +840,24 @@ function ApiKeysList() {
           <div key={k.id} className="glass p-4 rounded-lg flex items-center justify-between gap-4">
             <div className="flex-1 grid gap-2 md:grid-cols-5">
               <div>
-                <p className="text-xs text-white/50">Name</p>
-                <p className="font-medium text-white">{k.name}</p>
+                <p className="text-xs text-slate-400">Name</p>
+                <p className="font-medium text-slate-800">{k.name}</p>
               </div>
               <div>
-                <p className="text-xs text-white/50">Key</p>
-                <code className="text-sm text-white/70 font-mono">{k.key}</code>
+                <p className="text-xs text-slate-400">Key</p>
+                <code className="text-sm text-slate-600 font-mono">{k.key}</code>
               </div>
               <div>
-                <p className="text-xs text-white/50">Created</p>
-                <p className="text-sm text-white/70">{k.created}</p>
+                <p className="text-xs text-slate-400">Created</p>
+                <p className="text-sm text-slate-600">{k.created}</p>
               </div>
               <div>
-                <p className="text-xs text-white/50">Last Used</p>
-                <p className="text-sm text-white/70">{k.lastUsed}</p>
+                <p className="text-xs text-slate-400">Last Used</p>
+                <p className="text-sm text-slate-600">{k.lastUsed}</p>
               </div>
               <div className="flex items-center gap-2">
                 <Switch checked={k.active} onCheckedChange={(c) => { const n=[...keys]; const i=n.findIndex(x=>x.id===k.id); n[i]={...k, active: c}; setKeys(n) }} />
-                <span className="text-sm text-white/70">Active</span>
+                <span className="text-sm text-slate-600">Active</span>
               </div>
             </div>
             <Button variant="ghost" size="icon">

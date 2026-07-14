@@ -41,10 +41,10 @@ export default function ExpensesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Expense Claims</h1>
-          <p className="text-white/60">Submit and track expense reimbursements</p>
+          <h1 className="text-2xl font-bold text-slate-800">Expense Claims</h1>
+          <p className="text-slate-500">Submit and track expense reimbursements</p>
         </div>
-        <button onClick={() => setShowForm(!showForm)} className="px-5 py-2.5 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-medium hover:shadow-lg transition-all">
+        <button onClick={() => setShowForm(!showForm)} className="px-5 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium hover:shadow-lg transition-all">
           {showForm ? 'Cancel' : '+ New Claim'}
         </button>
       </div>
@@ -53,25 +53,25 @@ export default function ExpensesPage() {
         <form onSubmit={submitClaim} className="glass rounded-2xl p-6 space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs text-white/50 mb-1 block">Category</label>
-              <select value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-amber-500/50">
+              <label className="text-xs text-slate-400 mb-1 block">Category</label>
+              <select value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-amber-500/50">
                 {categories.map(c => <option key={c} value={c} className="bg-[#1a1a2e]">{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
               </select>
             </div>
             <div>
-              <label className="text-xs text-white/50 mb-1 block">Amount (₹)</label>
-              <input type="number" value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value })} required placeholder="0.00" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50" />
+              <label className="text-xs text-slate-400 mb-1 block">Amount (₹)</label>
+              <input type="number" value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value })} required placeholder="0.00" className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50" />
             </div>
             <div className="col-span-2">
-              <label className="text-xs text-white/50 mb-1 block">Description</label>
-              <input value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} required placeholder="What was this expense for?" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50" />
+              <label className="text-xs text-slate-400 mb-1 block">Description</label>
+              <input value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} required placeholder="What was this expense for?" className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50" />
             </div>
             <div>
-              <label className="text-xs text-white/50 mb-1 block">Date</label>
-              <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-amber-500/50" />
+              <label className="text-xs text-slate-400 mb-1 block">Date</label>
+              <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} required className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-amber-500/50" />
             </div>
           </div>
-          <button type="submit" className="px-6 py-2.5 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-medium hover:shadow-lg transition-all">Submit Claim</button>
+          <button type="submit" className="px-6 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium hover:shadow-lg transition-all">Submit Claim</button>
         </form>
       )}
 
@@ -79,7 +79,7 @@ export default function ExpensesPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-white/10 text-white/50 text-[11px] uppercase tracking-wider">
+              <tr className="border-b border-slate-200/60 text-slate-400 text-[11px] uppercase tracking-wider">
                 <th className="text-left px-5 py-3 font-semibold">Employee</th>
                 <th className="text-left px-5 py-3 font-semibold">Category</th>
                 <th className="text-left px-5 py-3 font-semibold">Description</th>
@@ -90,12 +90,12 @@ export default function ExpensesPage() {
             </thead>
             <tbody>
               {expenses.map(e => (
-                <tr key={e.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="px-5 py-3.5 text-white font-medium">{e.employee}</td>
-                  <td className="px-5 py-3.5 text-white/70">{e.category.charAt(0).toUpperCase() + e.category.slice(1)}</td>
-                  <td className="px-5 py-3.5 text-white/60 max-w-[200px] truncate">{e.description}</td>
-                  <td className="px-5 py-3.5 text-white/60">{new Date(e.date).toLocaleDateString('en-IN')}</td>
-                  <td className="px-5 py-3.5 text-right text-white font-semibold">₹{e.amount.toLocaleString('en-IN')}</td>
+                <tr key={e.id} className="border-b border-slate-100 hover:bg-slate-50 border border-slate-100 transition-colors">
+                  <td className="px-5 py-3.5 text-slate-800 font-medium">{e.employee}</td>
+                  <td className="px-5 py-3.5 text-slate-600">{e.category.charAt(0).toUpperCase() + e.category.slice(1)}</td>
+                  <td className="px-5 py-3.5 text-slate-500 max-w-[200px] truncate">{e.description}</td>
+                  <td className="px-5 py-3.5 text-slate-500">{new Date(e.date).toLocaleDateString('en-IN')}</td>
+                  <td className="px-5 py-3.5 text-right text-slate-800 font-semibold">₹{e.amount.toLocaleString('en-IN')}</td>
                   <td className="px-5 py-3.5 text-center"><StatusChip type={statusStyles[e.status]} label={e.status} /></td>
                 </tr>
               ))}
@@ -106,16 +106,16 @@ export default function ExpensesPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="glass rounded-2xl p-5 text-center">
-          <div className="text-2xl font-bold text-white">₹{expenses.filter(e => e.status === 'pending').reduce((s, e) => s + e.amount, 0).toLocaleString('en-IN')}</div>
-          <div className="text-xs text-white/40 mt-1">Pending Approval</div>
+          <div className="text-2xl font-bold text-slate-800">₹{expenses.filter(e => e.status === 'pending').reduce((s, e) => s + e.amount, 0).toLocaleString('en-IN')}</div>
+          <div className="text-xs text-slate-800/40 mt-1">Pending Approval</div>
         </div>
         <div className="glass rounded-2xl p-5 text-center">
           <div className="text-2xl font-bold text-teal">₹{expenses.filter(e => e.status === 'approved' || e.status === 'reimbursed').reduce((s, e) => s + e.amount, 0).toLocaleString('en-IN')}</div>
-          <div className="text-xs text-white/40 mt-1">Approved This Month</div>
+          <div className="text-xs text-slate-800/40 mt-1">Approved This Month</div>
         </div>
         <div className="glass rounded-2xl p-5 text-center">
-          <div className="text-2xl font-bold text-white">{expenses.length}</div>
-          <div className="text-xs text-white/40 mt-1">Total Claims</div>
+          <div className="text-2xl font-bold text-slate-800">{expenses.length}</div>
+          <div className="text-xs text-slate-800/40 mt-1">Total Claims</div>
         </div>
       </div>
     </div>

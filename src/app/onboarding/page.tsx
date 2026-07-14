@@ -31,7 +31,7 @@ export default function OnboardingPage() {
             <LogoHorizontal size="md" showTagline={false} />
           </div>
           <div className="font-display font-semibold text-xl mt-1">Set up your organization</div>
-          <p className="text-sm text-muted-foreground mt-2">Welcome! Let&apos;s get your company set up in KaramcharHR.</p>
+          <p className="text-sm text-slate-500 mt-2">Welcome! Let&apos;s get your company set up in KaramcharHR.</p>
         </div>
 
         <form action={formAction} className="space-y-5">
@@ -40,13 +40,13 @@ export default function OnboardingPage() {
           )}
 
           <div className="field">
-            <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Company Name</label>
+            <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Company Name</label>
             <input name="name" type="text" placeholder="Acme Corp" required value={defaultName} onChange={(e) => setDefaultName(e.target.value)}
               className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />
           </div>
 
           <div className="field">
-            <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Company Size</label>
+            <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Company Size</label>
             <select name="size"
               className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm">
               <option value="1-10">1-10 employees</option>
@@ -58,7 +58,7 @@ export default function OnboardingPage() {
           </div>
 
           <div className="field">
-            <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Industry</label>
+            <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Industry</label>
             <select name="industry"
               className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm">
               <option value="technology">Technology</option>

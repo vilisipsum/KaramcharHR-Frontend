@@ -93,7 +93,7 @@ export function ShiftsContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search shifts..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -136,7 +136,7 @@ export function ShiftsContent() {
                       <Label>Flexible Shift</Label>
                       <div className="flex items-center gap-2">
                         <input type="checkbox" checked={formData.is_flexible} onChange={(e) => setFormData({ ...formData, is_flexible: e.target.checked })} className="w-4 h-4 accent-amber-500" />
-                        <Label className="text-white cursor-pointer">Employees can clock in/out flexibly</Label>
+                        <Label className="text-slate-800 cursor-pointer">Employees can clock in/out flexibly</Label>
                       </div>
                     </div>
                   </div>
@@ -156,19 +156,19 @@ export function ShiftsContent() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="font-semibold text-white">{s.name}</span>
+                        <span className="font-semibold text-slate-800">{s.name}</span>
                         <span className="px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded flex items-center gap-1">
                           <Clock className="w-3 h-3" />
                           {s.start_time.slice(0,5)} - {s.end_time.slice(0,5)}
                         </span>
                       </div>
-                      <div className="flex flex-wrap gap-4 text-xs text-white/50 mb-2">
+                      <div className="flex flex-wrap gap-4 text-xs text-slate-400 mb-2">
                         <span><Sun className="w-3 h-3 inline mr-1" /> Grace: {s.grace_period_minutes} min</span>
                         <span><Moon className="w-3 h-3 inline mr-1" /> Late: {s.late_threshold_minutes} min</span>
                         <span><RotateCcw className="w-3 h-3 inline mr-1" /> Half: {s.half_day_threshold_minutes} min</span>
                         {s.is_flexible && <span className="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded flex items-center gap-1"><RotateCcw className="w-3 h-3" /> Flexible</span>}
                       </div>
-                      <p className="text-sm text-white/60">{s._count?.employees || 0} employees assigned</p>
+                      <p className="text-sm text-slate-500">{s._count?.employees || 0} employees assigned</p>
                     </div>
                     <div className="flex items-center gap-1">
                       <Button variant="ghost" size="icon" onClick={() => { setEditing(s); setFormData(s); setShowForm(true) }}>

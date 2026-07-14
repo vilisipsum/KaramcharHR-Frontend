@@ -106,7 +106,7 @@ export function AppraisalCyclesContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search cycles..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -193,14 +193,14 @@ export function AppraisalCyclesContent() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="font-semibold text-white">{c.name}</span>
+                          <span className="font-semibold text-slate-800">{c.name}</span>
                           <span className={`px-2 py-0.5 text-xs rounded flex items-center gap-1 ${status.bg} ${status.color}`}>
                             <StatusIcon className="w-3 h-3" />
                             {status.label}
                           </span>
                         </div>
-                        <p className="text-sm text-white/60">{c.financial_year}{c.quarter ? ` - Q${c.quarter}` : ''}</p>
-                        <div className="flex flex-wrap gap-4 text-xs text-white/50 mt-2">
+                        <p className="text-sm text-slate-500">{c.financial_year}{c.quarter ? ` - Q${c.quarter}` : ''}</p>
+                        <div className="flex flex-wrap gap-4 text-xs text-slate-400 mt-2">
                           <span><Calendar className="w-3 h-3 inline mr-1" /> {new Date(c.start_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>
                           <span><Calendar className="w-3 h-3 inline mr-1" /> {new Date(c.end_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>
                           {c.self_review_deadline && <span><Clock className="w-3 h-3 inline mr-1" /> Self: {new Date(c.self_review_deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>}

@@ -62,8 +62,8 @@ export function ErrorState({
       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30 mb-4">
         <AlertCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
       </div>
-      <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-      <p className="text-white/60 mb-4 max-w-md mx-auto">
+      <h3 className="text-lg font-semibold text-slate-800 mb-2">{title}</h3>
+      <p className="text-slate-500 mb-4 max-w-md mx-auto">
         {description || errorMessage}
       </p>
       {onRetry && (
@@ -114,9 +114,9 @@ export function EmptyState({
           <FileText className="w-8 h-8 text-gray-400 dark:text-gray-500" />
         </div>
       )}
-      <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
+      <h3 className="text-lg font-semibold text-slate-800 mb-2">{title}</h3>
       {description && (
-        <p className="text-white/60 mb-6 max-w-sm mx-auto">{description}</p>
+        <p className="text-slate-500 mb-6 max-w-sm mx-auto">{description}</p>
       )}
       {(action || secondaryAction) && (
         <div className="flex items-center justify-center gap-3 flex-wrap">

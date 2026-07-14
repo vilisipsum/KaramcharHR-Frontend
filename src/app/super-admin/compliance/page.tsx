@@ -177,46 +177,46 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight flex items-center gap-2">
             <Shield className="w-6 h-6 text-rose-500" />
             Compliance Slabs Controls
           </h1>
-          <p className="text-xs text-muted-foreground">Manage state tax brackets and PF/ESIC platform values.</p>
+          <p className="text-xs text-slate-500">Manage state tax brackets and PF/ESIC platform values.</p>
         </div>
 
         <div className="glass border border-amber-500/25 p-6 rounded-2xl space-y-4">
           <div className="flex items-center gap-3 text-amber-400">
             <AlertTriangle className="w-6 h-6" />
-            <h3 className="font-bold text-white text-base">Setup Required: Compliance Tables Missing</h3>
+            <h3 className="font-bold text-slate-800 text-base">Setup Required: Compliance Tables Missing</h3>
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">
+          <p className="text-xs text-slate-500 leading-relaxed">
             The platform compliance metadata tables (`platform_tax_rules` and `platform_settings`) have not been initialized in your Supabase database schema yet.
           </p>
-          <div className="p-4 bg-black/40 border border-white/5 rounded-xl space-y-3">
+          <div className="p-4 bg-black/40 border border-slate-100 rounded-xl space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-muted-foreground uppercase flex items-center gap-1.5">
+              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5 text-rose-400" />
                 super_admin_compliance.sql
               </span>
               <button
                 onClick={() => { navigator.clipboard.writeText(sqlScript); showToast('SQL copied to clipboard!', 'success') }}
-                className="flex items-center gap-1 px-2.5 py-1 rounded bg-white/5 text-[10px] text-white font-semibold hover:bg-white/10 transition-colors cursor-pointer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded bg-slate-50 border border-slate-100 text-[10px] text-slate-800 font-semibold hover:bg-slate-100 transition-colors cursor-pointer"
               >
                 <Copy className="w-3 h-3" />
                 Copy SQL
               </button>
             </div>
-            <pre className="text-[10px] font-mono text-zinc-500 overflow-x-auto max-h-48 whitespace-pre-wrap select-all">
+            <pre className="text-[10px] font-mono text-slate-400 overflow-x-auto max-h-48 whitespace-pre-wrap select-all">
               {sqlScript}
             </pre>
           </div>
-          <div className="text-xs text-muted-foreground leading-relaxed">
+          <div className="text-xs text-slate-500 leading-relaxed">
             <strong>To install compliance tables:</strong> Go to your Supabase Dashboard SQL Editor, click &quot;New Query&quot;, paste the SQL script, and click &quot;Run&quot;. After running, refresh this page.
           </div>
         </div>
 
         {toast && (
-          <div className="fixed top-4 right-4 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300">
+          <div className="fixed top-4 right-4 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl bg-emerald-50 border border-emerald-200 text-emerald-800">
             {toast.message}
           </div>
         )}
@@ -228,35 +228,35 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
     <div className="space-y-6">
       {toast && (
         <div className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl ${
-          toast.type === 'success' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-300' : 'bg-rose-500/20 border border-rose-500/30 text-rose-300'
+          toast.type === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' : 'bg-rose-50 border border-rose-200 text-rose-800'
         }`}>{toast.message}</div>
       )}
 
       {editingState && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/75 backdrop-blur-sm" onClick={() => setEditingState(null)} />
-          <div className="relative glass w-full max-w-lg rounded-2xl p-6 border border-white/10 shadow-2xl space-y-4">
-            <h4 className="font-bold text-white text-base">Edit Professional Tax Slabs — {editingState}</h4>
+          <div className="relative glass w-full max-w-lg rounded-2xl p-6 border border-slate-200/60 shadow-2xl space-y-4">
+            <h4 className="font-bold text-slate-800 text-base">Edit Professional Tax Slabs — {editingState}</h4>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold text-muted-foreground uppercase block">JSON Slab Configurations</label>
+              <label className="text-[10px] font-bold text-slate-500 uppercase block">JSON Slab Configurations</label>
               <textarea
                 value={jsonText}
                 onChange={e => setJsonText(e.target.value)}
                 rows={10}
-                className="w-full px-3 py-2 bg-black/40 border border-white/10 rounded-xl text-xs text-white font-mono focus:outline-none focus:border-marigold/50 resize-none"
+                className="w-full px-3 py-2 bg-black/40 border border-slate-200/60 rounded-xl text-xs text-slate-800 font-mono focus:outline-none focus:border-indigo/50 resize-none"
               />
             </div>
             <div className="flex gap-3">
               <button
                 onClick={handleSaveSlabs}
                 disabled={isPending}
-                className="flex-1 py-2 bg-gradient-to-r from-marigold to-rose text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                className="flex-1 py-2 bg-indigo text-slate-800 text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
               >
                 {isPending ? 'Saving...' : 'Save Configuration'}
               </button>
               <button
                 onClick={() => setEditingState(null)}
-                className="px-4 py-2 bg-white/5 border border-border/30 text-white text-xs font-semibold rounded-xl hover:bg-white/10 transition-colors"
+                className="px-4 py-2 bg-white border border-slate-200/60/30 text-slate-800 text-xs font-semibold rounded-xl hover:bg-slate-100 transition-colors"
               >
                 Cancel
               </button>
@@ -266,27 +266,27 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
       )}
 
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+        <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight flex items-center gap-2">
           <Shield className="w-6 h-6 text-rose-500" />
           Compliance Slabs Controls
         </h1>
-        <p className="text-xs text-muted-foreground">Manage professional tax matrices and statutory EPF/ESIC constants dynamically.</p>
+        <p className="text-xs text-slate-500">Manage professional tax matrices and statutory EPF/ESIC constants dynamically.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* PF & ESIC Central Overrides */}
         <div className="glass rounded-2xl p-6 space-y-6">
-          <div className="border-b border-white/5 pb-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest">PF & ESIC Constants Override</h3>
-            <p className="text-[10px] text-muted-foreground mt-0.5">Central limits updated across all client salaries.</p>
+          <div className="border-b border-slate-100 pb-3">
+            <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest">PF & ESIC Constants Override</h3>
+            <p className="text-[10px] text-slate-500 mt-0.5">Central limits updated across all client salaries.</p>
           </div>
 
           <div className="space-y-4">
             {data?.settings.map(sett => (
-              <div key={sett.id} className="flex items-center justify-between gap-4 p-3 bg-white/[0.02] border border-white/5 rounded-xl">
+              <div key={sett.id} className="flex items-center justify-between gap-4 p-3 bg-white/[0.02] border border-slate-100 rounded-xl">
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-white font-mono">{sett.key}</p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5">{sett.description}</p>
+                  <p className="text-xs font-bold text-slate-800 font-mono">{sett.key}</p>
+                  <p className="text-[10px] text-slate-500 mt-0.5">{sett.description}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <input
@@ -299,7 +299,7 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
                         handleUpdateSetting(sett.key, val)
                       }
                     }}
-                    className="w-24 px-2 py-1.5 bg-white/5 border border-border/30 rounded-lg text-xs font-bold text-white focus:outline-none focus:border-marigold/50 text-right"
+                    className="w-24 px-2 py-1.5 bg-white border border-slate-200/60/30 rounded-lg text-xs font-bold text-slate-800 focus:outline-none focus:border-indigo/50 text-right"
                   />
                 </div>
               </div>
@@ -309,16 +309,16 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
 
         {/* State Tax Matrices */}
         <div className="glass rounded-2xl p-6 space-y-6">
-          <div className="border-b border-white/5 pb-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest">Professional Tax State Slabs</h3>
-            <p className="text-[10px] text-muted-foreground mt-0.5">Custom slabs mapping salary range to monthly Professional Tax (PT).</p>
+          <div className="border-b border-slate-100 pb-3">
+            <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest">Professional Tax State Slabs</h3>
+            <p className="text-[10px] text-slate-500 mt-0.5">Custom slabs mapping salary range to monthly Professional Tax (PT).</p>
           </div>
 
           <div className="space-y-4">
             {data?.taxRules.map(rule => (
-              <div key={rule.id} className="p-4 bg-white/[0.02] border border-white/5 rounded-xl space-y-3">
+              <div key={rule.id} className="p-4 bg-white/[0.02] border border-slate-100 rounded-xl space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-white">{rule.state_name}</span>
+                  <span className="text-xs font-extrabold text-slate-800">{rule.state_name}</span>
                   <button
                     onClick={() => handleEditSlabsClick(rule.state_name, rule.slabs)}
                     className="text-[10px] text-marigold font-bold hover:underline cursor-pointer"
@@ -328,13 +328,13 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
                 </div>
 
                 <div className="space-y-1.5">
-                  <div className="grid grid-cols-3 text-[9px] font-bold text-muted-foreground uppercase tracking-wider pb-1 border-b border-white/5">
+                  <div className="grid grid-cols-3 text-[9px] font-bold text-slate-500 uppercase tracking-wider pb-1 border-b border-slate-100">
                     <span>Wage Min</span>
                     <span>Wage Max</span>
                     <span className="text-right">PT Amount</span>
                   </div>
                   {rule.slabs.map((slab, index) => (
-                    <div key={index} className="grid grid-cols-3 text-[11px] font-medium text-white font-mono">
+                    <div key={index} className="grid grid-cols-3 text-[11px] font-medium text-slate-800 font-mono">
                       <span>₹{slab.min.toLocaleString('en-IN')}</span>
                       <span>₹{slab.max > 999999 ? 'No limit' : slab.max.toLocaleString('en-IN')}</span>
                       <span className="text-right text-rose-300">₹{slab.pt}</span>

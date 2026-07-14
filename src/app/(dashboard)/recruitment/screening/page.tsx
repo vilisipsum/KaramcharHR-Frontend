@@ -48,38 +48,38 @@ export default function ResumeScreeningPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">AI Resume Screening</h1>
-        <p className="text-white/60">Paste a resume to extract candidate data and match against job openings</p>
+        <h1 className="text-2xl font-bold text-slate-800">AI Resume Screening</h1>
+        <p className="text-slate-500">Paste a resume to extract candidate data and match against job openings</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass rounded-2xl p-6 space-y-4">
           <div>
-            <label className="text-sm font-semibold text-white mb-2 block">Resume Text</label>
+            <label className="text-sm font-semibold text-slate-800 mb-2 block">Resume Text</label>
             <textarea
               value={resumeText}
               onChange={e => setResumeText(e.target.value)}
               placeholder="Paste the full resume text here..."
               rows={12}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors resize-none font-mono"
+              className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors resize-none font-mono"
             />
           </div>
 
           <div>
-            <label className="text-sm font-semibold text-white mb-2 block">Job Description (optional — for match scoring)</label>
+            <label className="text-sm font-semibold text-slate-800 mb-2 block">Job Description (optional — for match scoring)</label>
             <textarea
               value={jobDescription}
               onChange={e => setJobDescription(e.target.value)}
               placeholder="Paste the job requirements to calculate a match score..."
               rows={6}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors resize-none font-mono"
+              className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors resize-none font-mono"
             />
           </div>
 
           <button
             onClick={parse}
             disabled={loading || !resumeText.trim()}
-            className="px-6 py-3 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
+            className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
           >
             {loading ? 'Parsing...' : 'Analyze Resume'}
           </button>
@@ -90,14 +90,14 @@ export default function ResumeScreeningPage() {
         </div>
 
         <div className="glass rounded-2xl p-6 space-y-4">
-          <h2 className="text-lg font-bold text-white">Extracted Data</h2>
+          <h2 className="text-lg font-bold text-slate-800">Extracted Data</h2>
 
           {!result && !loading && (
-            <p className="text-white/40 text-sm">Paste a resume on the left and click "Analyze Resume"</p>
+            <p className="text-slate-800/40 text-sm">Paste a resume on the left and click "Analyze Resume"</p>
           )}
 
           {loading && (
-            <div className="flex items-center gap-3 text-white/60 text-sm">
+            <div className="flex items-center gap-3 text-slate-500 text-sm">
               <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
               Analyzing with DeepSeek AI...
             </div>
@@ -111,8 +111,8 @@ export default function ResumeScreeningPage() {
                     result.matchScore >= 80 ? 'text-teal' : result.matchScore >= 60 ? 'text-amber-400' : 'text-rose-400'
                   }`}>{result.matchScore}%</div>
                   <div>
-                    <div className="text-sm font-semibold text-white">Match Score</div>
-                    <div className="text-xs text-white/50">{result.matchAnalysis}</div>
+                    <div className="text-sm font-semibold text-slate-800">Match Score</div>
+                    <div className="text-xs text-slate-400">{result.matchAnalysis}</div>
                   </div>
                 </div>
               )}
@@ -128,10 +128,10 @@ export default function ResumeScreeningPage() {
 
               {result.skills && result.skills.length > 0 && (
                 <div>
-                  <div className="text-sm font-semibold text-white mb-2">Skills</div>
+                  <div className="text-sm font-semibold text-slate-800 mb-2">Skills</div>
                   <div className="flex flex-wrap gap-2">
                     {result.skills.map((s, i) => (
-                      <span key={i} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-white/80">{s}</span>
+                      <span key={i} className="px-3 py-1 rounded-full bg-white border border-slate-200/60 text-xs text-slate-700">{s}</span>
                     ))}
                   </div>
                 </div>
@@ -139,9 +139,9 @@ export default function ResumeScreeningPage() {
 
               {result.education && result.education.length > 0 && (
                 <div>
-                  <div className="text-sm font-semibold text-white mb-2">Education</div>
+                  <div className="text-sm font-semibold text-slate-800 mb-2">Education</div>
                   {result.education.map((e, i) => (
-                    <div key={i} className="text-xs text-white/70 mb-1">
+                    <div key={i} className="text-xs text-slate-600 mb-1">
                       {e.degree} — {e.institution}{e.year ? ` (${e.year})` : ''}
                     </div>
                   ))}
@@ -150,8 +150,8 @@ export default function ResumeScreeningPage() {
 
               {result.summary && (
                 <div>
-                  <div className="text-sm font-semibold text-white mb-1">Summary</div>
-                  <p className="text-xs text-white/60">{result.summary}</p>
+                  <div className="text-sm font-semibold text-slate-800 mb-1">Summary</div>
+                  <p className="text-xs text-slate-500">{result.summary}</p>
                 </div>
               )}
             </div>
@@ -165,8 +165,8 @@ export default function ResumeScreeningPage() {
 function Field({ label, value }: { label: string; value?: string | null }) {
   return (
     <div>
-      <div className="text-xs text-white/40">{label}</div>
-      <div className="text-sm text-white font-medium">{value || '—'}</div>
+      <div className="text-xs text-slate-800/40">{label}</div>
+      <div className="text-sm text-slate-800 font-medium">{value || '—'}</div>
     </div>
   )
 }

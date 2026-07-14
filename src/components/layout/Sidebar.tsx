@@ -80,7 +80,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
         {navItems.map((item) => {
           if (item.permission && !can(item.permission)) return null
           const active = path === item.href
-          const config = iconConfig[item.label] || { component: Settings, colorClass: 'text-zinc-500', bgClass: 'bg-zinc-500/10' }
+          const config = iconConfig[item.label] || { component: Settings, colorClass: 'text-slate-400', bgClass: 'bg-zinc-500/10' }
           const IconComponent = config.component
 
           return (

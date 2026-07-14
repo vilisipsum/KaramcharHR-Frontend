@@ -13,17 +13,17 @@ export default function RegisterPage() {
         <div className="text-xs text-coral bg-coral/10 rounded-md px-3 py-2">{state.error}</div>
       )}
       <div className="field">
-        <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Company Name</label>
+        <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Company Name</label>
         <input name="company" type="text" placeholder="Acme Corp" required
           className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />
       </div>
       <div className="field">
-        <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Email</label>
+        <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Email</label>
         <input name="email" type="email" placeholder="admin@acme.com" required
           className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />
       </div>
       <div className="field">
-        <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Password</label>
+        <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Password</label>
         <div className="relative">
           <input 
             name="password" 
@@ -35,7 +35,7 @@ export default function RegisterPage() {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-2.5 text-muted-foreground hover:text-foreground cursor-pointer text-xs font-semibold"
+            className="absolute right-3 top-2.5 text-slate-500 hover:text-foreground cursor-pointer text-xs font-semibold"
           >
             {showPassword ? "Hide" : "Show"}
           </button>
@@ -44,7 +44,7 @@ export default function RegisterPage() {
       <button type="submit" disabled={pending} className="btn btn-primary w-full disabled:opacity-50">
         {pending ? 'Creating account...' : 'Create account'}
       </button>
-      <p className="text-center text-xs text-muted-foreground">
+      <p className="text-center text-xs text-slate-500">
         Already registered? <a href="/auth/login" className="text-rose font-semibold">Sign in</a>
       </p>
     </form>

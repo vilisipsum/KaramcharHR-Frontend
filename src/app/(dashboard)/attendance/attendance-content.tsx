@@ -90,7 +90,7 @@ export function AttendanceContent({ stats, attendance, employeeId }: AttendanceC
     <>
       {toast && (
         <div className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl ${
-          toast.type === 'success' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-300' : 'bg-rose-500/20 border border-rose-500/30 text-rose-300'
+          toast.type === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' : 'bg-rose-50 border border-rose-200 text-rose-800'
         }`}>
           {toast.message}
         </div>
@@ -106,7 +106,7 @@ export function AttendanceContent({ stats, attendance, employeeId }: AttendanceC
         <div className="glass p-5 flex flex-col items-center justify-center gap-4">
           <ProgressRing value={percent} label={elapsed} sublabel={userRecord?.clock_out ? "CLOCKED OUT" : userRecord?.clock_in ? "CLOCKED IN" : "NOT CLOCKED IN"} />
           {userRecord?.clock_out ? (
-            <button disabled className="btn bg-white/10 text-muted-foreground w-full sm:w-auto cursor-not-allowed">
+            <button disabled className="btn bg-slate-100 text-slate-500 w-full sm:w-auto cursor-not-allowed">
               Punched Out for Today
             </button>
           ) : (
@@ -120,16 +120,16 @@ export function AttendanceContent({ stats, attendance, employeeId }: AttendanceC
           )}
         </div>
         <div className="glass p-5">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Today&apos;s activity</div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-4">Today&apos;s activity</div>
           <div className="space-y-3">
             {attendance.length === 0 ? (
-              <div className="text-center text-muted-foreground py-8">No attendance records yet</div>
+              <div className="text-center text-slate-500 py-8">No attendance records yet</div>
             ) : (
               attendance.slice(0, 10).map((a) => (
                 <div key={a.employee_id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                   <div>
                     <div className="font-semibold text-sm">{a.employees.first_name} {a.employees.last_name}</div>
-                    <div className="text-xs text-muted-foreground">Clock in: {a.clock_in ? new Date(a.clock_in).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '--'}</div>
+                    <div className="text-xs text-slate-500">Clock in: {a.clock_in ? new Date(a.clock_in).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '--'}</div>
                   </div>
                   <StatusChip type={a.status as any} />
                 </div>

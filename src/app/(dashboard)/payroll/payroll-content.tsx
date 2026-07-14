@@ -64,10 +64,10 @@ export function PayrollContent({ payrollRuns, employeeSalary, salaryStructures }
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="glass p-5">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Payslip — {new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' })}</div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-4">Payslip — {new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' })}</div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
             <div>
-              <div className="font-mono text-[10px] uppercase text-muted-foreground mb-2">Earnings</div>
+              <div className="font-mono text-[10px] uppercase text-slate-500 mb-2">Earnings</div>
               {structure && [
                 { l: 'Basic', a: basic/12 },
                 { l: 'HRA', a: hra/12 },
@@ -83,7 +83,7 @@ export function PayrollContent({ payrollRuns, employeeSalary, salaryStructures }
               ))}
             </div>
             <div>
-              <div className="font-mono text-[10px] uppercase text-muted-foreground mb-2">Deductions</div>
+              <div className="font-mono text-[10px] uppercase text-slate-500 mb-2">Deductions</div>
               {structure && [
                 { l: 'PF (Employee)', a: pfEmp },
                 { l: 'ESI', a: esi },
@@ -96,7 +96,7 @@ export function PayrollContent({ payrollRuns, employeeSalary, salaryStructures }
               ))}
             </div>
           </div>
-          <div className="bg-gradient-to-r from-marigold to-rose rounded-lg p-4 flex justify-between items-center text-white">
+          <div className="bg-indigo rounded-lg p-4 flex justify-between items-center text-slate-800">
             <span className="font-semibold">Net Pay</span>
             <span className="font-mono text-xl font-semibold">₹ {netPay.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
           </div>
@@ -107,10 +107,10 @@ export function PayrollContent({ payrollRuns, employeeSalary, salaryStructures }
         </div>
 
         <div className="glass p-5 overflow-x-auto">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Payroll run — {new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' })}</div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-4">Payroll run — {new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' })}</div>
           <table className="w-full text-sm min-w-[400px]">
             <thead>
-              <tr className="font-mono text-[10px] uppercase text-muted-foreground border-b border-border">
+              <tr className="font-mono text-[10px] uppercase text-slate-500 border-b border-border">
                 <th className="text-left py-2.5 px-3">Department</th>
                 <th className="text-left py-2.5 px-3">Employees</th>
                 <th className="text-left py-2.5 px-3">Status</th>
@@ -119,7 +119,7 @@ export function PayrollContent({ payrollRuns, employeeSalary, salaryStructures }
             <tbody>
               {payrollRuns.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="text-center text-muted-foreground py-8">No payroll runs yet</td>
+                  <td colSpan={3} className="text-center text-slate-500 py-8">No payroll runs yet</td>
                 </tr>
               ) : (
                 payrollRuns.map((r, i) => (

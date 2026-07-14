@@ -54,8 +54,8 @@ export default function DocumentVerifyPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Document Verification</h1>
-        <p className="text-white/60">AI-powered validation of Indian government documents</p>
+        <h1 className="text-2xl font-bold text-slate-800">Document Verification</h1>
+        <p className="text-slate-500">AI-powered validation of Indian government documents</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -68,7 +68,7 @@ export default function DocumentVerifyPage() {
                 className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                   docType === key
                     ? 'bg-gradient-to-br from-amber-500/30 to-rose-500/30 text-white border border-amber-500/30'
-                    : 'bg-white/5 text-white/50 border border-white/10 hover:text-white/80'
+                    : 'bg-slate-50 border border-slate-100 text-slate-400 border border-slate-200/60 hover:text-slate-700'
                 }`}
               >
                 {label}
@@ -77,30 +77,30 @@ export default function DocumentVerifyPage() {
           </div>
 
           <div>
-            <label className="text-sm font-semibold text-white mb-2 block">Document Number</label>
+            <label className="text-sm font-semibold text-slate-800 mb-2 block">Document Number</label>
             <input
               value={docNumber}
               onChange={e => setDocNumber(e.target.value)}
               placeholder={docType === 'aadhaar' ? 'XXXX XXXX XXXX' : docType === 'pan' ? 'ABCDE1234F' : 'Enter number'}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors"
+              className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors"
             />
           </div>
 
           <div>
-            <label className="text-sm font-semibold text-white mb-2 block">Full Document Text (optional — for deeper analysis)</label>
+            <label className="text-sm font-semibold text-slate-800 mb-2 block">Full Document Text (optional — for deeper analysis)</label>
             <textarea
               value={docText}
               onChange={e => setDocText(e.target.value)}
               placeholder="Paste any visible text from the document for more accurate verification..."
               rows={4}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors resize-none"
+              className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50 transition-colors resize-none"
             />
           </div>
 
           <button
             onClick={verify}
             disabled={loading || !docNumber.trim()}
-            className="px-6 py-3 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
+            className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
           >
             {loading ? 'Verifying...' : 'Verify Document'}
           </button>
@@ -111,14 +111,14 @@ export default function DocumentVerifyPage() {
         </div>
 
         <div className="glass rounded-2xl p-6 space-y-4">
-          <h2 className="text-lg font-bold text-white">Verification Result</h2>
+          <h2 className="text-lg font-bold text-slate-800">Verification Result</h2>
 
           {!result && !loading && (
-            <p className="text-white/40 text-sm">Enter a document number and click Verify</p>
+            <p className="text-slate-800/40 text-sm">Enter a document number and click Verify</p>
           )}
 
           {loading && (
-            <div className="flex items-center gap-3 text-white/60 text-sm">
+            <div className="flex items-center gap-3 text-slate-500 text-sm">
               <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
               Analyzing document with DeepSeek AI...
             </div>
@@ -133,20 +133,20 @@ export default function DocumentVerifyPage() {
                   {result.verified ? '✓' : '✗'}
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-white">{result.verified ? 'Verified' : 'Suspicious'}</div>
-                  <div className="text-xs text-white/50">{result.message}</div>
+                  <div className="text-lg font-bold text-slate-800">{result.verified ? 'Verified' : 'Suspicious'}</div>
+                  <div className="text-xs text-slate-400">{result.message}</div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <div className="text-xs text-white/40">Confidence</div>
+                  <div className="text-xs text-slate-800/40">Confidence</div>
                   <div className={`text-sm font-semibold ${
                     result.confidence === 'high' ? 'text-teal' : result.confidence === 'medium' ? 'text-amber-400' : 'text-rose-400'
                   }`}>{result.confidence}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-white/40">Format Valid</div>
+                  <div className="text-xs text-slate-800/40">Format Valid</div>
                   <div className={`text-sm font-semibold ${result.formatValid ? 'text-teal' : 'text-rose-400'}`}>
                     {result.formatValid ? 'Yes' : 'No'}
                   </div>
@@ -155,18 +155,18 @@ export default function DocumentVerifyPage() {
 
               {result.extractedInfo && (
                 <div>
-                  <div className="text-xs text-white/40 uppercase tracking-wider mb-2">Extracted Info</div>
+                  <div className="text-xs text-slate-800/40 uppercase tracking-wider mb-2">Extracted Info</div>
                   <div className="glass-strong rounded-xl p-3 space-y-1 text-sm">
-                    {result.extractedInfo.name && <div><span className="text-white/50">Name:</span> <span className="text-white">{result.extractedInfo.name}</span></div>}
-                    {result.extractedInfo.dob && <div><span className="text-white/50">DOB:</span> <span className="text-white">{result.extractedInfo.dob}</span></div>}
-                    {result.extractedInfo.gender && <div><span className="text-white/50">Gender:</span> <span className="text-white">{result.extractedInfo.gender}</span></div>}
+                    {result.extractedInfo.name && <div><span className="text-slate-400">Name:</span> <span className="text-slate-800">{result.extractedInfo.name}</span></div>}
+                    {result.extractedInfo.dob && <div><span className="text-slate-400">DOB:</span> <span className="text-slate-800">{result.extractedInfo.dob}</span></div>}
+                    {result.extractedInfo.gender && <div><span className="text-slate-400">Gender:</span> <span className="text-slate-800">{result.extractedInfo.gender}</span></div>}
                   </div>
                 </div>
               )}
 
               {result.flags?.length > 0 && (
                 <div>
-                  <div className="text-xs text-white/40 uppercase tracking-wider mb-2">Flags</div>
+                  <div className="text-xs text-slate-800/40 uppercase tracking-wider mb-2">Flags</div>
                   {result.flags.map((f, i) => (
                     <div key={i} className="flex items-start gap-2 text-xs text-rose-400 mb-1">
                       <span className="mt-0.5">⚠</span>

@@ -108,7 +108,7 @@ export function DepartmentsContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input
                 placeholder="Search departments..."
                 value={search}
@@ -178,12 +178,12 @@ export function DepartmentsContent() {
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-semibold text-white">{dept.name}</span>
+                        <span className="font-semibold text-slate-800">{dept.name}</span>
                         <span className="px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded">{dept.code}</span>
                       </div>
-                      <p className="text-sm text-white/60">{dept._count?.employees || 0} employees</p>
+                      <p className="text-sm text-slate-500">{dept._count?.employees || 0} employees</p>
                       {dept.head && (
-                        <p className="text-sm text-white/50 mt-1">
+                        <p className="text-sm text-slate-400 mt-1">
                           Head: {dept.head.first_name} {dept.head.last_name} ({dept.head.employee_code})
                         </p>
                       )}

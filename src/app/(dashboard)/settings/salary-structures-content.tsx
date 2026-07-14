@@ -101,7 +101,7 @@ export function SalaryStructuresContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search structures..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -153,7 +153,7 @@ export function SalaryStructuresContent() {
                   </div>
                   
                   <div className="space-y-2 lg:col-span-3 border-t border-gray-700 pt-4">
-                    <h4 className="font-medium text-white mb-2">Statutory Components</h4>
+                    <h4 className="font-medium text-slate-800 mb-2">Statutory Components</h4>
                     <div className="grid gap-4 md:grid-cols-3">
                       <div className="space-y-2">
                         <Label>PF Employee %</Label>
@@ -173,7 +173,7 @@ export function SalaryStructuresContent() {
                         <Label>ESI Applicable</Label>
                         <div className="flex items-center gap-2">
                           <input type="checkbox" checked={formData.esi_applicable} onChange={(e) => setFormData({ ...formData, esi_applicable: e.target.checked })} className="w-4 h-4 accent-amber-500" />
-                          <Label className="text-white cursor-pointer">Yes</Label>
+                          <Label className="text-slate-800 cursor-pointer">Yes</Label>
                         </div>
                       </div>
                       <div className="space-y-2">
@@ -189,7 +189,7 @@ export function SalaryStructuresContent() {
 
                   <div className="flex items-center gap-2 lg:col-span-3">
                     <input type="checkbox" id="is_active" checked={formData.is_active} onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })} className="w-4 h-4 accent-amber-500" />
-                    <Label htmlFor="is_active" className="text-white">Active</Label>
+                    <Label htmlFor="is_active" className="text-slate-800">Active</Label>
                   </div>
 
                   <div className="lg:col-span-3 flex justify-end gap-2 border-t border-gray-700 pt-4">
@@ -207,7 +207,7 @@ export function SalaryStructuresContent() {
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <span className="font-semibold text-white">{s.name}</span>
+                      <span className="font-semibold text-slate-800">{s.name}</span>
                       <span className="ml-2 px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded">₹{s.ctc_annual.toLocaleString()}/yr</span>
                       {s.is_active && <span className="ml-2 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded">Active</span>}
                       {!s.is_active && <span className="ml-2 px-2 py-0.5 text-xs bg-red-500/20 text-red-400 rounded">Inactive</span>}
@@ -221,17 +221,17 @@ export function SalaryStructuresContent() {
                       </Button>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-2 text-sm text-white/60 mb-3">
-                    <div><span className="text-white/40">Basic:</span> {s.basic_percent}%</div>
-                    <div><span className="text-white/40">HRA:</span> {s.hra_percent}%</div>
-                    <div><span className="text-white/40">Special:</span> {s.special_allowance_percent}%</div>
+                  <div className="grid grid-cols-3 gap-2 text-sm text-slate-500 mb-3">
+                    <div><span className="text-slate-800/40">Basic:</span> {s.basic_percent}%</div>
+                    <div><span className="text-slate-800/40">HRA:</span> {s.hra_percent}%</div>
+                    <div><span className="text-slate-800/40">Special:</span> {s.special_allowance_percent}%</div>
                   </div>
-                  <div className="grid grid-cols-3 gap-2 text-sm text-white/60 mb-3">
-                    <div><span className="text-white/40">PF:</span> {s.pf_employee_rate}% / {s.pf_employer_rate}%</div>
-                    <div><span className="text-white/40">PT:</span> ₹{s.professional_tax_monthly}/mo</div>
-                    <div><span className="text-white/40">ESI:</span> {s.esi_applicable ? 'Yes' : 'No'}</div>
+                  <div className="grid grid-cols-3 gap-2 text-sm text-slate-500 mb-3">
+                    <div><span className="text-slate-800/40">PF:</span> {s.pf_employee_rate}% / {s.pf_employer_rate}%</div>
+                    <div><span className="text-slate-800/40">PT:</span> ₹{s.professional_tax_monthly}/mo</div>
+                    <div><span className="text-slate-800/40">ESI:</span> {s.esi_applicable ? 'Yes' : 'No'}</div>
                   </div>
-                  <p className="text-xs text-white/50">{s._count?.employees || 0} employees assigned</p>
+                  <p className="text-xs text-slate-400">{s._count?.employees || 0} employees assigned</p>
                 </CardContent>
               </Card>
             ))}

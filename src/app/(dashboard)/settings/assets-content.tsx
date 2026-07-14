@@ -104,7 +104,7 @@ export function AssetsContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search assets..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -174,17 +174,17 @@ export function AssetsContent() {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <TypeIcon className="w-5 h-5 text-amber-500" />
-                          <span className="font-semibold text-white">{a.name}</span>
+                          <span className="font-semibold text-slate-800">{a.name}</span>
                           <span className={`px-2 py-0.5 text-xs rounded ${statusColors[a.status]}`}>{a.status}</span>
                         </div>
-                        <p className="text-sm text-white/60 mb-1">{a.model}</p>
-                        <p className="text-xs text-white/50 mb-1">SN: {a.serial_number}</p>
-                        <p className="text-xs text-white/50">Purchased: {new Date(a.purchase_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} • ₹{a.purchase_cost.toLocaleString()}</p>
+                        <p className="text-sm text-slate-500 mb-1">{a.model}</p>
+                        <p className="text-xs text-slate-400 mb-1">SN: {a.serial_number}</p>
+                        <p className="text-xs text-slate-400">Purchased: {new Date(a.purchase_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} • ₹{a.purchase_cost.toLocaleString()}</p>
                         {a.warranty_expiry && (
-                          <p className="text-xs text-white/50 mt-1">Warranty: {new Date(a.warranty_expiry).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                          <p className="text-xs text-slate-400 mt-1">Warranty: {new Date(a.warranty_expiry).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                         )}
                         {a.assigned_to && (
-                          <p className="text-xs text-white/50 mt-1">Assigned: {a.assigned_to.first_name} {a.assigned_to.last_name} ({a.assigned_to.employee_code})</p>
+                          <p className="text-xs text-slate-400 mt-1">Assigned: {a.assigned_to.first_name} {a.assigned_to.last_name} ({a.assigned_to.employee_code})</p>
                         )}
                       </div>
                       <div className="flex items-center gap-1">

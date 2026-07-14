@@ -113,7 +113,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
       {/* Toast Notification */}
       {toast && (
         <div className={`fixed top-4 right-4 z-[100] px-4 py-3 rounded-xl text-sm font-semibold shadow-xl ${
-          toast.type === 'success' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-300' : 'bg-rose-500/20 border border-rose-500/30 text-rose-300'
+          toast.type === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' : 'bg-rose-50 border border-rose-200 text-rose-800'
         }`}>
           {toast.message}
         </div>
@@ -122,7 +122,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
       {/* Header controls */}
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
         <form onSubmit={handleSearch} className="relative flex-1 max-w-md w-full">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
           <input
             type="text"
             placeholder="Search by name, team, ID…"
@@ -134,7 +134,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
 
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo text-white text-sm font-bold hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer w-full sm:w-auto justify-center"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo text-slate-800 text-sm font-bold hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer w-full sm:w-auto justify-center"
         >
           <UserPlus className="w-4 h-4" />
           Add Employee
@@ -144,8 +144,8 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
       {/* Employee list */}
       {employees.length === 0 ? (
         <div className="glass p-16 text-center rounded-2xl flex flex-col items-center justify-center gap-3">
-          <Briefcase className="w-8 h-8 text-muted-foreground opacity-50" />
-          <div className="text-muted-foreground font-semibold text-sm">No employees in directory yet.</div>
+          <Briefcase className="w-8 h-8 text-slate-500 opacity-50" />
+          <div className="text-slate-500 font-semibold text-sm">No employees in directory yet.</div>
           <button
             onClick={() => setShowModal(true)}
             className="mt-2 text-xs text-marigold font-bold hover:text-amber transition-colors cursor-pointer"
@@ -159,11 +159,11 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
             <div key={emp.id} className="glass p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:border-amber-500/20 hover:shadow-md transition-all cursor-pointer relative group">
               <Avatar initials={`${emp.first_name?.[0]}${emp.last_name?.[0]}`.toUpperCase()} index={i} size="lg" />
               <div className="font-semibold text-sm truncate w-full mt-2 text-slate-800">{emp.first_name} {emp.last_name}</div>
-              <div className="text-xs text-muted-foreground truncate w-full">{emp.designations?.title || '—'} · {emp.departments?.name || '—'}</div>
+              <div className="text-xs text-slate-500 truncate w-full">{emp.designations?.title || '—'} · {emp.departments?.name || '—'}</div>
               <div className="mt-1">
                 <StatusChip type={emp.status === 'active' ? 'present' : emp.status === 'on_leave' ? 'leave' : 'absent'} label={emp.status} />
               </div>
-              <div className="text-[10px] text-muted-foreground font-mono mt-1">{emp.employee_code}</div>
+              <div className="text-[10px] text-slate-500 font-mono mt-1">{emp.employee_code}</div>
             </div>
           ))}
         </div>
@@ -199,7 +199,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
           <div className="fixed inset-0 bg-black/70 backdrop-blur-md" onClick={() => setShowModal(false)} />
 
           {/* Modal Container */}
-          <div className="relative glass w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col max-h-[90vh]">
+          <div className="relative glass w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-slate-200/60 flex flex-col max-h-[90vh]">
             {/* Header */}
             <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
               <div className="flex items-center gap-2">
@@ -301,7 +301,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="flex-1 py-2.5 bg-indigo text-white text-sm font-bold rounded-xl hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
+                  className="flex-1 py-2.5 bg-indigo text-slate-800 text-sm font-bold rounded-xl hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
                 >
                   {isPending ? 'Onboarding...' : 'Onboard Employee'}
                 </button>

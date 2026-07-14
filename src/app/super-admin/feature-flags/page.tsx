@@ -7,8 +7,8 @@ export default async function FeatureFlagsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight">Feature Flags</h1>
-        <p className="text-sm text-muted-foreground mt-1">Control which features are available globally or per plan</p>
+        <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">Feature Flags</h1>
+        <p className="text-sm text-slate-500 mt-1">Control which features are available globally or per plan</p>
       </div>
       <FeatureFlagManager flags={flags} />
     </div>

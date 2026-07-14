@@ -25,13 +25,13 @@ export default function RolesPage() {
   return (
     <RoleGate role="hr_manager" fallback={
       <div className="glass p-8 text-center">
-        <div className="text-muted-foreground">You don&apos;t have permission to manage roles.</div>
+        <div className="text-slate-500">You don&apos;t have permission to manage roles.</div>
       </div>
     }>
       <div className="glass p-5 mb-4">
-        <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-6">Role Definitions</div>
+        <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-6">Role Definitions</div>
         <div className="grid grid-cols-1 gap-2">
-          <div className="grid grid-cols-12 gap-4 font-mono text-[10px] uppercase text-muted-foreground px-3 py-2">
+          <div className="grid grid-cols-12 gap-4 font-mono text-[10px] uppercase text-slate-500 px-3 py-2">
             <div className="col-span-2">Role</div>
             <div className="col-span-1">Users</div>
             <div className="col-span-9">Permissions</div>
@@ -40,7 +40,7 @@ export default function RolesPage() {
             <div key={i} className="grid grid-cols-12 gap-4 items-center px-3 py-3 rounded-md hover:bg-muted/10">
               <div className="col-span-2 font-semibold text-sm">{getRoleLabel(r.role)}</div>
               <div className="col-span-1 font-mono text-sm">{r.count}</div>
-              <div className="col-span-7 text-xs text-muted-foreground">{r.desc}</div>
+              <div className="col-span-7 text-xs text-slate-500">{r.desc}</div>
               <div className="col-span-2">
                 <RoleGate role="org_admin">
                   <button className="btn btn-ghost text-xs py-1">Edit</button>
@@ -54,8 +54,8 @@ export default function RolesPage() {
       <div className="glass p-5">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Team Members</div>
-            <div className="text-xs text-muted-foreground mt-1">{teamMembers.length} users in your organization</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500">Team Members</div>
+            <div className="text-xs text-slate-500 mt-1">{teamMembers.length} users in your organization</div>
           </div>
           <RoleGate role="org_admin">
             <button className="btn btn-primary text-xs py-1.5 px-3">Invite User</button>
@@ -68,7 +68,7 @@ export default function RolesPage() {
                 <Avatar initials={m.initials} size="sm" index={i} />
                 <div>
                   <div className="text-sm font-semibold">{m.name}</div>
-                  <div className="text-xs text-muted-foreground">{m.email}</div>
+                  <div className="text-xs text-slate-500">{m.email}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -76,7 +76,7 @@ export default function RolesPage() {
                   {getRoleLabel(m.role)}
                 </span>
                 <RoleGate role="org_admin">
-                  <button className="text-xs text-muted-foreground hover:text-foreground">•••</button>
+                  <button className="text-xs text-slate-500 hover:text-foreground">•••</button>
                 </RoleGate>
               </div>
             </div>

@@ -103,7 +103,7 @@ export function LeaveTypesContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search leave types..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -171,29 +171,29 @@ export function LeaveTypesContent() {
                   <div className="space-y-3 border-t border-gray-700 pt-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-white">Paid Leave</p>
-                        <p className="text-sm text-white/60">Leave counts as paid time off</p>
+                        <p className="font-medium text-slate-800">Paid Leave</p>
+                        <p className="text-sm text-slate-500">Leave counts as paid time off</p>
                       </div>
                       <input type="checkbox" checked={formData.is_paid} onChange={(e) => setFormData({ ...formData, is_paid: e.target.checked })} className="w-5 h-5 accent-amber-500" />
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-white">Half Day Allowed</p>
-                        <p className="text-sm text-white/60">Employees can take half day leave</p>
+                        <p className="font-medium text-slate-800">Half Day Allowed</p>
+                        <p className="text-sm text-slate-500">Employees can take half day leave</p>
                       </div>
                       <input type="checkbox" checked={formData.is_half_day_allowed} onChange={(e) => setFormData({ ...formData, is_half_day_allowed: e.target.checked })} className="w-5 h-5 accent-amber-500" />
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-white">Requires Approval</p>
-                        <p className="text-sm text-white/60">Manager/HR must approve leave requests</p>
+                        <p className="font-medium text-slate-800">Requires Approval</p>
+                        <p className="text-sm text-slate-500">Manager/HR must approve leave requests</p>
                       </div>
                       <input type="checkbox" checked={formData.requires_approval} onChange={(e) => setFormData({ ...formData, requires_approval: e.target.checked })} className="w-5 h-5 accent-amber-500" />
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-white">Active</p>
-                        <p className="text-sm text-white/60">Available for employees to request</p>
+                        <p className="font-medium text-slate-800">Active</p>
+                        <p className="text-sm text-slate-500">Available for employees to request</p>
                       </div>
                       <input type="checkbox" checked={formData.is_active} onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })} className="w-5 h-5 accent-amber-500" />
                     </div>
@@ -214,13 +214,13 @@ export function LeaveTypesContent() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="font-semibold text-white">{lt.name}</span>
+                        <span className="font-semibold text-slate-800">{lt.name}</span>
                         <span className="px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded">{lt.code}</span>
                         {lt.is_active && <span className="px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded flex items-center gap-1"><Check className="w-3 h-3" /> Active</span>}
                         {!lt.is_active && <span className="px-2 py-0.5 text-xs bg-red-500/20 text-red-400 rounded flex items-center gap-1"><X className="w-3 h-3" /> Inactive</span>}
                       </div>
-                      <p className="text-sm text-white/60 mb-2">{lt.description}</p>
-                      <div className="flex flex-wrap gap-4 text-xs text-white/50">
+                      <p className="text-sm text-slate-500 mb-2">{lt.description}</p>
+                      <div className="flex flex-wrap gap-4 text-xs text-slate-400">
                         <span><Calendar className="w-3 h-3 inline mr-1" /> {lt.days_per_year} days/year</span>
                         <span><Shield className="w-3 h-3 inline mr-1" /> {lt.requires_approval ? 'Approval Required' : 'Auto-approve'}</span>
                         <span><Clock className="w-3 h-3 inline mr-1" /> {lt.is_half_day_allowed ? 'Half-day allowed' : 'Full day only'}</span>

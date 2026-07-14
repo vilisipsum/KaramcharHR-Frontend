@@ -116,7 +116,7 @@ export function RolesContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search roles..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -139,7 +139,7 @@ export function RolesContent() {
                       <Label>System Role</Label>
                       <div className="flex items-center gap-2">
                         <input type="checkbox" checked={formData.is_system} onChange={(e) => setFormData({ ...formData, is_system: e.target.checked })} className="w-4 h-4 accent-amber-500" />
-                        <Label className="text-white cursor-pointer">Cannot be deleted</Label>
+                        <Label className="text-slate-800 cursor-pointer">Cannot be deleted</Label>
                       </div>
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export function RolesContent() {
                   
                   <div className="border-t border-gray-700 pt-4">
                     <div className="flex items-center justify-between mb-4">
-                      <h4 className="font-medium text-white">Permissions</h4>
+                      <h4 className="font-medium text-slate-800">Permissions</h4>
                       <div className="flex gap-2">
                         <Button type="button" variant="ghost" size="sm" onClick={() => setFormData({ ...formData, permissions: ALL_PERMISSIONS })}>
                           <Check className="w-4 h-4 mr-1" /> Select All
@@ -164,7 +164,7 @@ export function RolesContent() {
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-h-96 overflow-y-auto pr-2">
                       {Object.entries(permissionGroups).map(([group, perms]) => (
                         <div key={group} className="space-y-2 p-4 glass rounded-lg">
-                          <h5 className="font-medium text-white mb-2 border-b border-gray-700 pb-2">{group}</h5>
+                          <h5 className="font-medium text-slate-800 mb-2 border-b border-gray-700 pb-2">{group}</h5>
                           {perms.map(perm => (
                             <label key={perm} className="flex items-center gap-2 cursor-pointer">
                               <input
@@ -180,7 +180,7 @@ export function RolesContent() {
                                 }}
                                 className="w-4 h-4 accent-amber-500"
                               />
-                              <span className="text-sm text-white/80">{perm.replace('.', ' ')}</span>
+                              <span className="text-sm text-slate-700">{perm.replace('.', ' ')}</span>
                             </label>
                           ))}
                         </div>
@@ -204,16 +204,16 @@ export function RolesContent() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="font-semibold text-white">{r.name}</span>
+                        <span className="font-semibold text-slate-800">{r.name}</span>
                         {r.is_system && (
                           <span className="px-2 py-0.5 text-xs bg-purple-500/20 text-purple-400 rounded flex items-center gap-1">
                             <Shield className="w-3 h-3" /> System
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-white/60 mb-2">{r.description}</p>
+                      <p className="text-sm text-slate-500 mb-2">{r.description}</p>
                       <div className="flex flex-wrap gap-2 mb-2">
-                        <span className="px-2 py-0.5 text-xs bg-gray-600/50 text-white/80 rounded flex items-center gap-1">
+                        <span className="px-2 py-0.5 text-xs bg-gray-600/50 text-slate-700 rounded flex items-center gap-1">
                           <Users className="w-3 h-3" /> {r._count?.users || 0} users
                         </span>
                         <span className="px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded flex items-center gap-1">
@@ -222,10 +222,10 @@ export function RolesContent() {
                       </div>
                       <div className="flex flex-wrap gap-1 max-h-12 overflow-y-auto">
                         {r.permissions.slice(0, 5).map(p => (
-                          <span key={p} className="px-2 py-0.5 text-xs bg-gray-700/50 text-white/70 rounded">{p.replace('.', ' ')}</span>
+                          <span key={p} className="px-2 py-0.5 text-xs bg-gray-700/50 text-slate-600 rounded">{p.replace('.', ' ')}</span>
                         ))}
                         {r.permissions.length > 5 && (
-                          <span className="px-2 py-0.5 text-xs bg-gray-700/50 text-white/50 rounded">+{r.permissions.length - 5} more</span>
+                          <span className="px-2 py-0.5 text-xs bg-gray-700/50 text-slate-400 rounded">+{r.permissions.length - 5} more</span>
                         )}
                       </div>
                     </div>
@@ -240,7 +240,7 @@ export function RolesContent() {
                             </Button>
                           </>
                         ) : (
-                          <span className="px-2 py-1 text-xs text-white/40">Protected</span>
+                          <span className="px-2 py-1 text-xs text-slate-800/40">Protected</span>
                         )}
                     </div>
                   </div>

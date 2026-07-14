@@ -10,7 +10,7 @@ export default function ForgotPasswordPage() {
     <form action={formAction} className="space-y-4">
       <div className="text-center mb-6">
         <h2 className="text-lg font-bold text-foreground">Reset Password</h2>
-        <p className="text-xs text-muted-foreground mt-1">Enter your email and we'll send you a password reset link.</p>
+        <p className="text-xs text-slate-500 mt-1">Enter your email and we'll send you a password reset link.</p>
       </div>
 
       {state?.error && (
@@ -18,7 +18,7 @@ export default function ForgotPasswordPage() {
       )}
 
       <div className="field">
-        <label className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Email Address</label>
+        <label className="font-mono text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Email Address</label>
         <input name="email" type="email" placeholder="ananya@company.com" required
           className="w-full px-3.5 py-2.5 rounded-md border border-border bg-white/75 dark:bg-[rgba(32,25,60,0.7)] text-foreground outline-none focus:border-rose text-sm" />
       </div>
@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
         {pending ? 'Sending link...' : 'Send reset link'}
       </button>
 
-      <p className="text-center text-xs text-muted-foreground pt-2">
+      <p className="text-center text-xs text-slate-500 pt-2">
         Remember your password? <a href="/auth/login" className="text-rose font-semibold">Sign in</a>
       </p>
     </form>

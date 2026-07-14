@@ -89,7 +89,7 @@ export function ExpenseCategoriesContent() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="relative max-w-xs flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-800/40" />
               <Input placeholder="Search categories..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
             </div>
             <Button onClick={() => { setEditing(null); resetForm(); setShowForm(true) }}>
@@ -121,11 +121,11 @@ export function ExpenseCategoriesContent() {
                   </div>
                   <div className="flex items-center gap-2">
                     <input type="checkbox" id="requires_receipt" checked={formData.requires_receipt} onChange={(e) => setFormData({ ...formData, requires_receipt: e.target.checked })} className="w-4 h-4 accent-amber-500" />
-                    <Label htmlFor="requires_receipt" className="text-white">Require Receipt</Label>
+                    <Label htmlFor="requires_receipt" className="text-slate-800">Require Receipt</Label>
                   </div>
                   <div className="flex items-center gap-2">
                     <input type="checkbox" id="is_active" checked={formData.is_active} onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })} className="w-4 h-4 accent-amber-500" />
-                    <Label htmlFor="is_active" className="text-white">Active</Label>
+                    <Label htmlFor="is_active" className="text-slate-800">Active</Label>
                   </div>
                   <div className="md:col-span-2 flex justify-end gap-2 border-t border-gray-700 pt-4">
                     <Button type="button" variant="outline" onClick={() => { setShowForm(false); setEditing(null); resetForm() }}>Cancel</Button>
@@ -143,13 +143,13 @@ export function ExpenseCategoriesContent() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="font-semibold text-white">{cat.name}</span>
+                        <span className="font-semibold text-slate-800">{cat.name}</span>
                         <span className="px-2 py-0.5 text-xs bg-amber-500/20 text-amber-400 rounded">{cat.code}</span>
                         {cat.is_active && <span className="px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded">Active</span>}
                         {!cat.is_active && <span className="px-2 py-0.5 text-xs bg-red-500/20 text-red-400 rounded">Inactive</span>}
                       </div>
-                      <p className="text-sm text-white/60 mb-2">{cat.description}</p>
-                      <div className="flex flex-wrap gap-4 text-xs text-white/50">
+                      <p className="text-sm text-slate-500 mb-2">{cat.description}</p>
+                      <div className="flex flex-wrap gap-4 text-xs text-slate-400">
                         <span>{cat._count?.claims || 0} claims</span>
                         {cat.max_amount && <span>Max: ₹{cat.max_amount.toLocaleString()}</span>}
                         <span>{cat.requires_receipt ? 'Receipt required' : 'No receipt needed'}</span>

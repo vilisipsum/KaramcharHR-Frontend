@@ -15,14 +15,14 @@ export function LogoHorizontal({ size = 'md', showTagline = true, className = ''
     <div className={`flex items-center ${gap} ${className}`}>
       <LogoMark size={pix} />
       <div className="flex flex-col leading-tight">
-        <span className={`${devaSize} font-deva bg-gradient-to-r from-marigold to-rose bg-clip-text text-transparent`}>
+        <span className={`${devaSize} font-deva bg-indigo bg-clip-text text-transparent`}>
           कर्मचारी
         </span>
         <span className={`${textSize} font-display font-semibold text-foreground`}>
           KaramcharHR
         </span>
         {showTagline && size !== 'sm' && (
-          <span className="text-[10px] font-mono text-muted-foreground tracking-wider uppercase">
+          <span className="text-[10px] font-mono text-slate-500 tracking-wider uppercase">
             Employee-first HRMS for India
           </span>
         )}

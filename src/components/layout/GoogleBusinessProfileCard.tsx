@@ -36,10 +36,10 @@ export function GoogleBusinessProfileCard() {
 
   return (
     <div className="glass p-5 col-span-1 md:col-span-2 lg:col-span-3 mt-4">
-      <div className="flex items-center justify-between mb-4 border-b border-border/30 pb-3">
+      <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Platform Integrations</div>
-          <h3 className="text-base font-bold text-white mt-1 flex items-center gap-2">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500">Platform Integrations</div>
+          <h3 className="text-base font-bold text-slate-800 mt-1 flex items-center gap-2">
             Google Business Profile
           </h3>
         </div>
@@ -49,7 +49,7 @@ export function GoogleBusinessProfileCard() {
             Connected
           </span>
         ) : (
-          <span className="text-[10px] font-mono bg-muted/20 text-muted-foreground px-2.5 py-0.5 rounded-full">
+          <span className="text-[10px] font-mono bg-muted/20 text-slate-500 px-2.5 py-0.5 rounded-full">
             Not Linked
           </span>
         )}
@@ -58,8 +58,8 @@ export function GoogleBusinessProfileCard() {
       {!isConnected ? (
         <div className="flex flex-col md:flex-row items-center gap-6 py-4">
           <div className="flex-1 space-y-2">
-            <p className="text-sm font-semibold text-white">Sync your business profile with KaramcharHR</p>
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p className="text-sm font-semibold text-slate-800">Sync your business profile with KaramcharHR</p>
+            <p className="text-xs text-slate-500 leading-relaxed">
               Connect your Google Business account to manage customer reviews, publish announcements, and automatically sync your office location details directly from the HR directory settings.
             </p>
           </div>
@@ -74,22 +74,22 @@ export function GoogleBusinessProfileCard() {
         <div className="space-y-6 pt-2">
           {/* Quick Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="p-3 bg-white/5 border border-border/20 rounded-xl">
-              <span className="text-[9px] text-zinc-400 font-bold uppercase">Business Location</span>
-              <h4 className="text-sm font-bold text-white mt-1 text-ellipsis overflow-hidden whitespace-nowrap">KaramcharHR Mumbai</h4>
-              <span className="text-[9px] text-zinc-500 block text-ellipsis overflow-hidden whitespace-nowrap">Udyog Vihar, Phase V</span>
+            <div className="p-3 bg-white border border-slate-200/60/20 rounded-xl">
+              <span className="text-[9px] text-slate-500 font-bold uppercase">Business Location</span>
+              <h4 className="text-sm font-bold text-slate-800 mt-1 text-ellipsis overflow-hidden whitespace-nowrap">KaramcharHR Mumbai</h4>
+              <span className="text-[9px] text-slate-400 block text-ellipsis overflow-hidden whitespace-nowrap">Udyog Vihar, Phase V</span>
             </div>
-            <div className="p-3 bg-white/5 border border-border/20 rounded-xl">
-              <span className="text-[9px] text-zinc-400 font-bold uppercase">Average Rating</span>
-              <h4 className="text-sm font-bold text-white mt-1 flex items-center gap-1.5">
+            <div className="p-3 bg-white border border-slate-200/60/20 rounded-xl">
+              <span className="text-[9px] text-slate-500 font-bold uppercase">Average Rating</span>
+              <h4 className="text-sm font-bold text-slate-800 mt-1 flex items-center gap-1.5">
                 4.8 <Star className="w-4 h-4 text-marigold fill-marigold" />
               </h4>
-              <span className="text-[9px] text-zinc-500">Based on 32 reviews</span>
+              <span className="text-[9px] text-slate-400">Based on 32 reviews</span>
             </div>
-            <div className="p-3 bg-white/5 border border-border/20 rounded-xl">
-              <span className="text-[9px] text-zinc-400 font-bold uppercase">Search Visibility</span>
-              <h4 className="text-sm font-bold text-white mt-1">+14.2%</h4>
-              <span className="text-[9px] text-zinc-500">Viewed by 2,450 users</span>
+            <div className="p-3 bg-white border border-slate-200/60/20 rounded-xl">
+              <span className="text-[9px] text-slate-500 font-bold uppercase">Search Visibility</span>
+              <h4 className="text-sm font-bold text-slate-800 mt-1">+14.2%</h4>
+              <span className="text-[9px] text-slate-400">Viewed by 2,450 users</span>
             </div>
           </div>
 
@@ -97,27 +97,27 @@ export function GoogleBusinessProfileCard() {
             {/* Reviews Section */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
                   <MessageSquare className="w-3.5 h-3.5" /> Recent Google Reviews
                 </span>
               </div>
               <div className="space-y-3 max-h-[220px] overflow-y-auto pr-1">
                 {reviews.map(review => (
-                  <div key={review.id} className="p-3.5 bg-white/5 border border-border/10 rounded-xl space-y-2">
+                  <div key={review.id} className="p-3.5 bg-white border border-slate-200/60/10 rounded-xl space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs font-bold text-white">{review.author}</span>
-                      <span className="text-[9px] text-zinc-500">{review.date}</span>
+                      <span className="text-xs font-bold text-slate-800">{review.author}</span>
+                      <span className="text-[9px] text-slate-400">{review.date}</span>
                     </div>
                     <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className={`w-3.5 h-3.5 ${i < review.rating ? 'text-marigold fill-marigold' : 'text-zinc-600'}`} />
                       ))}
                     </div>
-                    <p className="text-xs text-zinc-300 leading-relaxed font-medium">{review.comment}</p>
+                    <p className="text-xs text-slate-700 leading-relaxed font-medium">{review.comment}</p>
                     
                     {review.reply ? (
                       <div className="mt-2 p-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg text-[11px] text-indigo-400 font-semibold">
-                        <span className="font-bold text-[9px] uppercase tracking-wide block text-zinc-400 mb-0.5">Your Response</span>
+                        <span className="font-bold text-[9px] uppercase tracking-wide block text-slate-500 mb-0.5">Your Response</span>
                         {review.reply}
                       </div>
                     ) : (
@@ -151,7 +151,7 @@ export function GoogleBusinessProfileCard() {
 
             {/* Create GMB Post & Sync Settings */}
             <div className="space-y-4">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
                 <Plus className="w-3.5 h-3.5" /> Publish Google My Business Post
               </span>
               <form onSubmit={handlePostSubmit} className="space-y-3">
@@ -159,10 +159,10 @@ export function GoogleBusinessProfileCard() {
                   value={draftPost}
                   onChange={(e) => setDraftPost(e.target.value)}
                   placeholder="Draft updates, offers, or event announcements to post on Google Search & Maps..." 
-                  className="w-full h-[100px] p-3 rounded-xl border border-border/20 bg-white/5 text-xs text-foreground outline-none focus:border-rose leading-relaxed font-medium resize-none"
+                  className="w-full h-[100px] p-3 rounded-xl border border-border/20 bg-slate-50 border border-slate-100 text-xs text-foreground outline-none focus:border-rose leading-relaxed font-medium resize-none"
                 />
                 <div className="flex justify-between items-center">
-                  <span className="text-[9px] text-zinc-500 flex items-center gap-1">
+                  <span className="text-[9px] text-slate-400 flex items-center gap-1">
                     <AlertCircle className="w-3.5 h-3.5" /> Standard Google post rules apply
                   </span>
                   <button 
@@ -183,10 +183,10 @@ export function GoogleBusinessProfileCard() {
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <div className="text-xs font-bold text-white flex items-center gap-1">
+                  <div className="text-xs font-bold text-slate-800 flex items-center gap-1">
                     Directory Sync
                   </div>
-                  <div className="text-[10px] text-muted-foreground">
+                  <div className="text-[10px] text-slate-500">
                     Automatically sync phone, address, and hours changes to Google.
                   </div>
                 </div>
@@ -200,7 +200,7 @@ export function GoogleBusinessProfileCard() {
                   </button>
                   <button 
                     onClick={() => setIsConnected(false)}
-                    className="btn btn-secondary text-zinc-500 hover:text-red-500 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer"
+                    className="btn btn-secondary text-slate-400 hover:text-red-500 px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer"
                   >
                     Unlink
                   </button>

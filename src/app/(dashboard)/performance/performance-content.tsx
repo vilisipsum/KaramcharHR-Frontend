@@ -34,13 +34,13 @@ export function PerformanceContent({ cycles, reviews }: PerformanceContentProps)
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setActiveTab('cycles')}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeTab === 'cycles' ? 'bg-gradient-to-br from-amber-500/30 to-rose-500/30 text-white border border-amber-500/30' : 'bg-white/5 text-white/50 border border-white/10 hover:text-white/80'}`}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeTab === 'cycles' ? 'bg-gradient-to-br from-amber-500/30 to-rose-500/30 text-white border border-amber-500/30' : 'bg-slate-50 border border-slate-100 text-slate-400 border border-slate-200/60 hover:text-slate-700'}`}
         >
           Appraisal Cycles
         </button>
         <button
           onClick={() => setActiveTab('reviews')}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeTab === 'reviews' ? 'bg-gradient-to-br from-amber-500/30 to-rose-500/30 text-white border border-amber-500/30' : 'bg-white/5 text-white/50 border border-white/10 hover:text-white/80'}`}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${activeTab === 'reviews' ? 'bg-gradient-to-br from-amber-500/30 to-rose-500/30 text-white border border-amber-500/30' : 'bg-slate-50 border border-slate-100 text-slate-400 border border-slate-200/60 hover:text-slate-700'}`}
         >
           Reviews
         </button>
@@ -48,12 +48,12 @@ export function PerformanceContent({ cycles, reviews }: PerformanceContentProps)
 
       {activeTab === 'cycles' && (
         <div className="glass p-5 mb-4">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Appraisal Cycles</div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-4">Appraisal Cycles</div>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
             {cycles.map((c, i) => (
               <div key={c.id} className="glass-strong rounded-lg p-4">
                 <div className="font-semibold text-sm">{c.name}</div>
-                <div className="text-xs text-muted-foreground mt-1">{c.financial_year} · Q{c.quarter ?? 'Annual'}</div>
+                <div className="text-xs text-slate-500 mt-1">{c.financial_year} · Q{c.quarter ?? 'Annual'}</div>
                 <div className="mt-3"><StatusChip type={c.status as any} label={c.status.charAt(0).toUpperCase() + c.status.slice(1).replace('_', ' ')} /></div>
               </div>
             ))}
@@ -64,7 +64,7 @@ export function PerformanceContent({ cycles, reviews }: PerformanceContentProps)
       {activeTab === 'reviews' && (
         <div className="space-y-4">
           <div className="glass p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Q3 Reviews — In Progress</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-4">Q3 Reviews — In Progress</div>
             <div className="space-y-3">
               {reviews.slice(0, 5).map((r, i) => (
                 <div key={r.id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
@@ -72,7 +72,7 @@ export function PerformanceContent({ cycles, reviews }: PerformanceContentProps)
                     <Avatar initials={`${r.employees.first_name?.[0]}${r.employees.last_name?.[0]}`.toUpperCase()} index={i} />
                     <div>
                       <div className="font-semibold text-sm">{r.employees.first_name} {r.employees.last_name}</div>
-                      <div className="text-xs text-muted-foreground">{r.employees.departments?.name || '—'}</div>
+                      <div className="text-xs text-slate-500">{r.employees.departments?.name || '—'}</div>
                     </div>
                   </div>
                   <div className="text-right">

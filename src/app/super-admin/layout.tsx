@@ -16,12 +16,12 @@ export default async function SuperAdminLayout({ children }: { children: React.R
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="h-14 shrink-0 border-b border-border/30 flex items-center px-6 gap-4 bg-background/80 backdrop-blur-md">
+        <header className="h-14 shrink-0 border-b border-slate-100 flex items-center px-6 gap-4 bg-background/80 backdrop-blur-md">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
             <span className="text-xs font-bold text-rose-400 uppercase tracking-widest">Super Admin</span>
           </div>
-          <span className="text-xs text-muted-foreground ml-auto">
+          <span className="text-xs text-slate-500 ml-auto">
             {session.user.email}
           </span>
         </header>
