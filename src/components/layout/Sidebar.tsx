@@ -23,8 +23,10 @@ import {
   Sparkles,
   PieChart,
   Settings,
-  Shield
+  Shield,
+  LogOut
 } from 'lucide-react'
+import { signout } from '@/app/auth/actions'
 
 const navItems: Array<{ label: string; href: string; permission?: Permission }> = [
   { label: 'Dashboard', href: '/' },
@@ -101,7 +103,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
         })}
       </div>
 
-      <div className="mt-auto pt-4 border-t border-border/30">
+      <div className="mt-auto pt-4 border-t border-border/30 flex flex-col gap-2">
         <RoleGate role="org_admin">
           {(() => {
             const active = path === '/settings/roles'
@@ -125,6 +127,19 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
             )
           })()}
         </RoleGate>
+
+        <button
+          onClick={async () => {
+            await signout()
+            if (onClose) onClose()
+          }}
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all text-muted-foreground hover:text-foreground border border-transparent cursor-pointer text-left w-full"
+        >
+          <div className="w-8 h-8 rounded-lg border border-rose-500/20 bg-rose-500/10 flex items-center justify-center transition-all shadow-[0_0_10px_rgba(244,63,94,0.15)]">
+            <LogOut className="w-4 h-4 text-rose-500" />
+          </div>
+          Log Out
+        </button>
       </div>
     </aside>
   )
