@@ -29,12 +29,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                 onClick={() => setIsSidebarOpen(false)}
               />
               {/* Drawer Content */}
-              <div className="relative z-10 w-[240px] h-full bg-[#0F0B22] border-r border-border/30 p-4 flex flex-col shadow-2xl">
+              <div className="relative z-10 w-[240px] h-full bg-white border-r border-slate-100 p-4 flex flex-col shadow-2xl">
                 <div className="flex justify-between items-center mb-6">
-                  <span className="font-display font-semibold text-lg text-white">Navigation</span>
+                  <span className="font-display font-semibold text-lg text-slate-800">Navigation</span>
                   <button 
                     onClick={() => setIsSidebarOpen(false)}
-                    className="p-1.5 rounded-md hover:bg-white/10 text-zinc-400 cursor-pointer flex items-center justify-center"
+                    className="p-1.5 rounded-md hover:bg-slate-50 text-slate-400 cursor-pointer flex items-center justify-center"
                   >
                     ✕
                   </button>

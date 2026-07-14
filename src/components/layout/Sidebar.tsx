@@ -72,7 +72,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
   const { can } = usePermissions()
 
   return (
-    <aside className="glass p-5 flex flex-col gap-2 h-full min-w-[200px]">
+    <aside className="bg-white border border-slate-200/60 rounded-[28px] p-5 flex flex-col gap-2 h-full min-w-[200px] shadow-[0_10px_35px_-12px_rgba(67,56,202,0.03)]">
       <div className="mb-6">
         <LogoHorizontal size="sm" showTagline={false} />
       </div>
@@ -90,8 +90,8 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
               onClick={onClose}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
                 active
-                  ? 'bg-gradient-to-r from-marigold/10 to-rose/10 text-foreground border border-border/30 shadow-[0_0_15px_rgba(255,168,39,0.05)]'
-                  : 'text-muted-foreground hover:text-foreground border border-transparent'
+                  ? 'bg-indigo-50 border border-indigo-100/50 text-indigo shadow-sm'
+                  : 'text-slate-500 hover:text-indigo hover:bg-slate-50 border border-transparent'
               }`}
             >
               <div className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-all ${config.bgClass}`}>
@@ -103,7 +103,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
         })}
       </div>
 
-      <div className="mt-auto pt-4 border-t border-border/30 flex flex-col gap-2">
+      <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-2">
         <RoleGate role="org_admin">
           {(() => {
             const active = path === '/settings/roles'
@@ -115,8 +115,8 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
                 onClick={onClose}
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
                   active
-                    ? 'bg-gradient-to-r from-marigold/10 to-rose/10 text-foreground border border-border/30 shadow-[0_0_15px_rgba(255,168,39,0.05)]'
-                    : 'text-muted-foreground hover:text-foreground border border-transparent'
+                    ? 'bg-indigo-50 border border-indigo-100/50 text-indigo shadow-sm'
+                    : 'text-slate-500 hover:text-indigo hover:bg-slate-50 border border-transparent'
                 }`}
               >
                 <div className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-all ${config.bgClass}`}>
@@ -133,7 +133,7 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
             await signout()
             if (onClose) onClose()
           }}
-          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all text-muted-foreground hover:text-foreground border border-transparent cursor-pointer text-left w-full"
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold transition-all text-slate-500 hover:text-indigo hover:bg-slate-50 border border-transparent cursor-pointer text-left w-full"
         >
           <div className="w-8 h-8 rounded-lg border border-rose-500/20 bg-rose-500/10 flex items-center justify-center transition-all shadow-[0_0_10px_rgba(244,63,94,0.15)]">
             <LogOut className="w-4 h-4 text-rose-500" />

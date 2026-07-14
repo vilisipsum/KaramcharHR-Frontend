@@ -128,13 +128,13 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
             placeholder="Search by name, team, ID…"
             value={localSearch}
             onChange={e => setLocalSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-white/5 text-foreground outline-none focus:border-rose text-sm transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 outline-none focus:border-indigo text-sm transition-colors"
           />
         </form>
 
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-bold hover:shadow-lg hover:opacity-95 transition-all cursor-pointer w-full sm:w-auto justify-center"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo text-white text-sm font-bold hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer w-full sm:w-auto justify-center"
         >
           <UserPlus className="w-4 h-4" />
           Add Employee
@@ -158,7 +158,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
           {employees.map((emp, i) => (
             <div key={emp.id} className="glass p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:border-amber-500/20 hover:shadow-md transition-all cursor-pointer relative group">
               <Avatar initials={`${emp.first_name?.[0]}${emp.last_name?.[0]}`.toUpperCase()} index={i} size="lg" />
-              <div className="font-semibold text-sm truncate w-full mt-2 text-white">{emp.first_name} {emp.last_name}</div>
+              <div className="font-semibold text-sm truncate w-full mt-2 text-slate-800">{emp.first_name} {emp.last_name}</div>
               <div className="text-xs text-muted-foreground truncate w-full">{emp.designations?.title || '—'} · {emp.departments?.name || '—'}</div>
               <div className="mt-1">
                 <StatusChip type={emp.status === 'active' ? 'present' : emp.status === 'on_leave' ? 'leave' : 'absent'} label={emp.status} />
@@ -175,17 +175,17 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
           <button
             onClick={() => handlePageChange(page - 1)}
             disabled={page === 1}
-            className="px-3 py-1.5 rounded-lg bg-white/5 border border-border text-xs text-white hover:bg-white/10 disabled:opacity-40 transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 hover:bg-slate-50 disabled:opacity-40 transition-colors"
           >
             ← Prev
           </button>
-          <span className="text-xs text-muted-foreground font-semibold">
+          <span className="text-xs text-slate-500 font-semibold">
             Page {page} of {totalPages} ({total} total)
           </span>
           <button
             onClick={() => handlePageChange(page + 1)}
             disabled={page === totalPages}
-            className="px-3 py-1.5 rounded-lg bg-white/5 border border-border text-xs text-white hover:bg-white/10 disabled:opacity-40 transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 hover:bg-slate-50 disabled:opacity-40 transition-colors"
           >
             Next →
           </button>
@@ -201,12 +201,12 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
           {/* Modal Container */}
           <div className="relative glass w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col max-h-[90vh]">
             {/* Header */}
-            <div className="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-white/5">
+            <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
               <div className="flex items-center gap-2">
-                <UserPlus className="w-5 h-5 text-marigold" />
-                <h3 className="font-bold text-white text-base">Add New Employee</h3>
+                <UserPlus className="w-5 h-5 text-indigo" />
+                <h3 className="font-bold text-slate-800 text-base">Add New Employee</h3>
               </div>
-              <button onClick={() => setShowModal(false)} className="p-1 rounded-lg hover:bg-white/10 text-muted-foreground hover:text-white transition-colors cursor-pointer">
+              <button onClick={() => setShowModal(false)} className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -215,81 +215,81 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
             <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">First Name</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">First Name</label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input type="text" required placeholder="John" value={form.first_name} onChange={e => setForm({ ...form, first_name: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors" />
+                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors" />
                   </div>
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Last Name</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Last Name</label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input type="text" required placeholder="Doe" value={form.last_name} onChange={e => setForm({ ...form, last_name: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors" />
+                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors" />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Email Address</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Email Address</label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input type="email" required placeholder="john.doe@company.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
-                    className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors" />
+                    className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Employee Code</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Employee Code</label>
                   <div className="relative">
-                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input type="text" required placeholder="EMP024" value={form.employee_code} onChange={e => setForm({ ...form, employee_code: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors" />
+                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors" />
                   </div>
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Date of Joining</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Date of Joining</label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input type="date" required value={form.date_of_joining} onChange={e => setForm({ ...form, date_of_joining: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors" />
+                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors" />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Phone Number</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Phone Number</label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input type="tel" placeholder="+91 98765 43210" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
-                    className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors" />
+                    className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Department</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Department</label>
                   <div className="relative">
-                    <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <select value={form.department_id} onChange={e => setForm({ ...form, department_id: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors appearance-none">
+                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors appearance-none">
                       {departments.map(d => (
-                        <option key={d.id} value={d.id} className="bg-[#0f0b22] text-white">{d.name}</option>
+                        <option key={d.id} value={d.id} className="bg-white text-slate-800">{d.name}</option>
                       ))}
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">Designation</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Designation</label>
                   <div className="relative">
-                    <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <select value={form.designation_id} onChange={e => setForm({ ...form, designation_id: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-border rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 transition-colors appearance-none">
+                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50 transition-colors appearance-none">
                       {designations.map(d => (
-                        <option key={d.id} value={d.id} className="bg-[#0f0b22] text-white">{d.title}</option>
+                        <option key={d.id} value={d.id} className="bg-white text-slate-800">{d.title}</option>
                       ))}
                     </select>
                   </div>
@@ -297,18 +297,18 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 pt-4 border-t border-white/5">
+              <div className="flex gap-3 pt-4 border-t border-slate-100">
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="flex-1 py-2.5 bg-gradient-to-br from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:opacity-90 hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
+                  className="flex-1 py-2.5 bg-indigo text-white text-sm font-bold rounded-xl hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
                 >
                   {isPending ? 'Onboarding...' : 'Onboard Employee'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-6 py-2.5 bg-white/5 border border-border text-sm font-semibold rounded-xl hover:bg-white/10 transition-colors cursor-pointer text-muted-foreground hover:text-white"
+                  className="px-6 py-2.5 bg-white border border-slate-200 text-sm font-semibold rounded-xl hover:bg-slate-50 transition-colors cursor-pointer text-slate-700"
                 >
                   Cancel
                 </button>
