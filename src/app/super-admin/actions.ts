@@ -164,3 +164,63 @@ export async function toggleAnnouncement(id: string, active: boolean): Promise<A
   revalidatePath('/super-admin/announcements')
   return { success: `Announcement ${active ? 'activated' : 'deactivated'}.` }
 }
+
+// ─── GDPR & DPDP Compliance Actions ──────────────────────────────────────────
+
+export async function exportOrganizationData(orgId: string): Promise<{ error?: string; data?: any }> {
+  const session = await requireSuperAdmin()
+  if (!session) return { error: 'Unauthorized' }
+
+  const sa = await createClient(true)
+
+  // Retrieve full organization structural records
+  const [org, employees, departments, designations, leaves, attendance, payroll, assets] = await Promise.all([
+    sa.from('organizations').select('*').eq('id', orgId).single(),
+    sa.from('employees').select('*').eq('org_id', orgId),
+    sa.from('departments').select('*').eq('org_id', orgId),
+    sa.from('designations').select('*').eq('org_id', orgId),
+    sa.from('leave_requests').select('*, leave_types(name, code)').in('employee_id', sa.from('employees').select('id').eq('org_id', orgId) as any),
+    sa.from('attendance').select('*').in('employee_id', sa.from('employees').select('id').eq('org_id', orgId) as any),
+    sa.from('payroll_runs').select('*').eq('org_id', orgId),
+    sa.from('assets').select('*').eq('org_id', orgId).then(r => r, () => ({ data: [], error: null })), // safe fallback if table does not exist
+  ])
+
+  if (org.error) return { error: org.error.message }
+
+  const payload = {
+    exported_at: new Date().toISOString(),
+    exporter: session.user.email,
+    organization: org.data,
+    departments: departments.data || [],
+    designations: designations.data || [],
+    employees: employees.data || [],
+    attendance: attendance.data || [],
+    leave_requests: leaves.data || [],
+    payroll_runs: payroll.data || [],
+    assets: assets?.data || [],
+  }
+
+  await logPlatformAction(session.user.id, session.user.email!, 'org.data_export', orgId, org.data.name, { record_count: employees.data?.length || 0 })
+  return { data: payload }
+}
+
+export async function wipeOrganizationData(orgId: string, orgName: string): Promise<ActionResult> {
+  const session = await requireSuperAdmin()
+  if (!session) return { error: 'Unauthorized' }
+
+  const sa = await createClient(true)
+
+  // Run permanent delete cascade
+  const { error } = await sa
+    .from('organizations')
+    .delete()
+    .eq('id', orgId)
+
+  if (error) return { error: error.message }
+
+  // Log immutable audit log for compliance records
+  await logPlatformAction(session.user.id, session.user.email!, 'org.wipe_data', undefined, orgName, { org_id: orgId })
+  revalidatePath('/super-admin/organizations')
+  return { success: `All data for ${orgName} has been permanently purged under DPDP compliance rules.` }
+}
+

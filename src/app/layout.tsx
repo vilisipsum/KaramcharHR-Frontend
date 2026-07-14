@@ -16,7 +16,10 @@ export const metadata: Metadata = {
     "Payroll Management Login",
     "Self Service HR Portal",
     "employee self-service ESS portal online",
-    "KaramcharHR app"
+    "KaramcharHR app",
+    "apna salary slip download",
+    "online attendance marking app",
+    "कर्मचारी लॉगिन"
   ],
   icons: { icon: '/icon.svg' },
   robots: {

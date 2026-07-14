@@ -2,8 +2,8 @@
 
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { toggleOrgFeature, updateOrgPlan, updateOrgLimits, suspendOrganization, activateOrganization } from '@/app/super-admin/actions'
-import { Users, Zap, ScrollText, Settings, Clock, CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
+import { toggleOrgFeature, updateOrgPlan, updateOrgLimits, suspendOrganization, activateOrganization, exportOrganizationData, wipeOrganizationData } from '@/app/super-admin/actions'
+import { Users, Zap, ScrollText, Settings, Clock, CheckCircle, XCircle, AlertTriangle, Download, Trash2, Shield } from 'lucide-react'
 
 type Org = {
   id: string; name: string; slug: string; plan: string; status: string
@@ -34,10 +34,51 @@ export function OrgDetailClient({ org, employees, features, auditLogs, allFlags 
   const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'employees' | 'audit'>('overview')
   const [isPending, startTransition] = useTransition()
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+  const [showWipeConfirm, setShowWipeConfirm] = useState(false)
+  const [confirmName, setConfirmName] = useState('')
 
   const showToast = (message: string, type: 'success' | 'error') => {
     setToast({ message, type })
     setTimeout(() => setToast(null), 3500)
+  }
+
+  const handleExport = async () => {
+    startTransition(async () => {
+      const res = await exportOrganizationData(org.id)
+      if (res.error) {
+        showToast(res.error, 'error')
+        return
+      }
+
+      // Download file in browser
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(res.data, null, 2))
+      const downloadAnchor = document.createElement('a')
+      downloadAnchor.setAttribute("href", dataStr)
+      downloadAnchor.setAttribute("download", `${org.slug}-data-export.json`)
+      document.body.appendChild(downloadAnchor)
+      downloadAnchor.click()
+      downloadAnchor.remove()
+
+      showToast('Tenant profile data exported successfully.', 'success')
+    })
+  }
+
+  const handleWipe = async () => {
+    if (confirmName !== org.name) {
+      showToast('Organization name does not match', 'error')
+      return
+    }
+
+    startTransition(async () => {
+      const res = await wipeOrganizationData(org.id, org.name)
+      if (res.error) {
+        showToast(res.error, 'error')
+        return
+      }
+      showToast(res.success!, 'success')
+      setShowWipeConfirm(false)
+      router.push('/super-admin/organizations')
+    })
   }
 
   const handleFeatureToggle = (featureKey: string, currentEnabled: boolean) => {
@@ -83,6 +124,52 @@ export function OrgDetailClient({ org, employees, features, auditLogs, allFlags 
         <div className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl ${
           toast.type === 'success' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-300' : 'bg-rose-500/20 border border-rose-500/30 text-rose-300'
         }`}>{toast.message}</div>
+      )}
+
+      {/* Wipe Double-Confirmation Dialog Modal */}
+      {showWipeConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-black/75 backdrop-blur-sm" onClick={() => setShowWipeConfirm(false)} />
+          <div className="relative glass w-full max-w-md rounded-2xl p-6 border border-rose-500/25 shadow-2xl space-y-4">
+            <div className="flex items-center gap-2 text-rose-400">
+              <AlertTriangle className="w-5 h-5 shrink-0" />
+              <h4 className="font-bold text-white text-base">Permanent Compliance Wipe</h4>
+            </div>
+            
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              This action executes a permanent cascade deletion. All employees, attendance logs, leave balances, and salary slips will be wiped. This is completely irreversible under DPDP rules.
+            </p>
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">
+                Type <span className="text-white font-mono select-all bg-white/5 px-1 py-0.5 rounded">{org.name}</span> to confirm:
+              </label>
+              <input
+                type="text"
+                value={confirmName}
+                onChange={e => setConfirmName(e.target.value)}
+                placeholder="Acme Corp"
+                className="w-full px-3 py-2 bg-white/5 border border-rose-500/30 rounded-xl text-sm text-white focus:outline-none focus:border-rose-500"
+              />
+            </div>
+
+            <div className="flex gap-3 pt-2">
+              <button
+                onClick={handleWipe}
+                disabled={confirmName !== org.name || isPending}
+                className="flex-1 py-2 bg-rose-500 text-white text-xs font-bold rounded-xl hover:bg-rose-600 disabled:opacity-30 disabled:hover:bg-rose-500 cursor-pointer transition-colors"
+              >
+                {isPending ? 'Purging Tenant...' : 'Permanently Purge Data'}
+              </button>
+              <button
+                onClick={() => { setShowWipeConfirm(false); setConfirmName('') }}
+                className="px-4 py-2 bg-white/5 border border-border/30 text-white text-xs font-semibold rounded-xl hover:bg-white/10 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Status Bar */}
@@ -134,61 +221,93 @@ export function OrgDetailClient({ org, employees, features, auditLogs, allFlags 
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Plan Control */}
-          <div className="glass rounded-2xl p-6 space-y-4">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest">Plan & Billing</h3>
-            <form action={handleUpdateOrgPlan} className="space-y-3">
-              <input type="hidden" name="org_id" value={org.id} />
-              <div>
-                <label className="text-xs text-muted-foreground font-semibold block mb-1">Plan</label>
-                <select name="plan" defaultValue={org.plan}
-                  className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50">
-                  <option value="trial">Trial</option>
-                  <option value="free">Free</option>
-                  <option value="starter">Starter (₹2,999/mo)</option>
-                  <option value="professional">Professional (₹7,999/mo)</option>
-                  <option value="enterprise">Enterprise (₹19,999/mo)</option>
-                </select>
-              </div>
-              <div>
-                <label className="text-xs text-muted-foreground font-semibold block mb-1">Extend Trial (days)</label>
-                <input type="number" name="trial_days" defaultValue={14} min={1} max={365}
-                  className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50" />
-              </div>
-              <button type="submit" className="w-full py-2 bg-gradient-to-r from-marigold to-rose text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
-                Update Plan
-              </button>
-            </form>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Plan Control */}
+            <div className="glass rounded-2xl p-6 space-y-4">
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest">Plan & Billing</h3>
+              <form action={handleUpdateOrgPlan} className="space-y-3">
+                <input type="hidden" name="org_id" value={org.id} />
+                <div>
+                  <label className="text-xs text-muted-foreground font-semibold block mb-1">Plan</label>
+                  <select name="plan" defaultValue={org.plan}
+                    className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50">
+                    <option value="trial">Trial</option>
+                    <option value="free">Free</option>
+                    <option value="starter">Starter (₹2,999/mo)</option>
+                    <option value="professional">Professional (₹7,999/mo)</option>
+                    <option value="enterprise">Enterprise (₹19,999/mo)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs text-muted-foreground font-semibold block mb-1">Extend Trial (days)</label>
+                  <input type="number" name="trial_days" defaultValue={14} min={1} max={365}
+                    className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50" />
+                </div>
+                <button type="submit" className="w-full py-2 bg-gradient-to-r from-marigold to-rose text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+                  Update Plan
+                </button>
+              </form>
+            </div>
+
+            {/* Limits Control */}
+            <div className="glass rounded-2xl p-6 space-y-4">
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest">Limits & Notes</h3>
+              <form action={handleUpdateOrgLimits} className="space-y-3">
+                <input type="hidden" name="org_id" value={org.id} />
+                <div>
+                  <label className="text-xs text-muted-foreground font-semibold block mb-1">Max Employees</label>
+                  <input type="number" name="max_employees" defaultValue={org.max_employees}
+                    className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-muted-foreground font-semibold block mb-1">Storage Quota (MB)</label>
+                  <input type="number" name="storage_quota_mb" defaultValue={org.storage_quota_mb}
+                    className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-muted-foreground font-semibold block mb-1">Internal Notes</label>
+                  <textarea name="notes" defaultValue={org.notes ?? ''} rows={3}
+                    className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 resize-none" />
+                </div>
+                <button type="submit" className="w-full py-2 bg-white/10 border border-border/30 text-white text-xs font-bold rounded-xl hover:bg-white/15 transition-colors cursor-pointer">
+                  Save Limits
+                </button>
+              </form>
+            </div>
           </div>
 
-          {/* Limits Control */}
-          <div className="glass rounded-2xl p-6 space-y-4">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest">Limits & Notes</h3>
-            <form action={handleUpdateOrgLimits} className="space-y-3">
-              <input type="hidden" name="org_id" value={org.id} />
-              <div>
-                <label className="text-xs text-muted-foreground font-semibold block mb-1">Max Employees</label>
-                <input type="number" name="max_employees" defaultValue={org.max_employees}
-                  className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50" />
-              </div>
-              <div>
-                <label className="text-xs text-muted-foreground font-semibold block mb-1">Storage Quota (MB)</label>
-                <input type="number" name="storage_quota_mb" defaultValue={org.storage_quota_mb}
-                  className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50" />
-              </div>
-              <div>
-                <label className="text-xs text-muted-foreground font-semibold block mb-1">Internal Notes</label>
-                <textarea name="notes" defaultValue={org.notes ?? ''} rows={3}
-                  className="w-full px-3 py-2 bg-white/5 border border-border/30 rounded-xl text-sm text-white focus:outline-none focus:border-marigold/50 resize-none" />
-              </div>
-              <button type="submit" className="w-full py-2 bg-white/10 border border-border/30 text-white text-xs font-bold rounded-xl hover:bg-white/15 transition-colors cursor-pointer">
-                Save Limits
+          {/* GDPR & DPDP Compliance Governance Panel */}
+          <div className="glass border border-rose-500/10 rounded-2xl p-6 space-y-4">
+            <div className="flex items-center gap-2 text-rose-400">
+              <Shield className="w-4.5 h-4.5" />
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest">DPDP Act Governance Panel</h3>
+            </div>
+            <p className="text-xs text-muted-foreground max-w-xl leading-relaxed">
+              Compliance controls under India&apos;s Digital Personal Data Protection (DPDP) Act. You can export the tenant organization profile portability logs or trigger a permanent data erase sweep.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <button
+                onClick={handleExport}
+                disabled={isPending}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-border/30 text-white text-xs font-bold hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Export Tenant Profile
               </button>
-            </form>
+              <button
+                onClick={() => setShowWipeConfirm(true)}
+                disabled={isPending}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-bold hover:bg-rose-500/20 transition-all cursor-pointer"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                Wipe Organization Data
+              </button>
+            </div>
           </div>
         </div>
       )}
+
 
       {/* Feature Flags Tab */}
       {activeTab === 'features' && (

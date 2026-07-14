@@ -16,6 +16,7 @@ import { signout } from '@/app/auth/actions'
 const navItems = [
   { label: 'Overview', href: '/super-admin', icon: LayoutDashboard, exact: true },
   { label: 'Organizations', href: '/super-admin/organizations', icon: Building2 },
+  { label: 'Compliance Slabs', href: '/super-admin/compliance', icon: Shield },
   { label: 'Feature Flags', href: '/super-admin/feature-flags', icon: Zap },
   { label: 'Audit Logs', href: '/super-admin/audit-logs', icon: ScrollText },
   { label: 'Announcements', href: '/super-admin/announcements', icon: Megaphone },
