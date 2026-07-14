@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { PerformanceContent } from './performance-content'
 
 export default async function PerformancePage() {
@@ -22,8 +21,6 @@ export default async function PerformancePage() {
   ])
 
   return (
-    <DashboardLayout>
-      <PerformanceContent cycles={cycles} reviews={reviews} />
-    </DashboardLayout>
+    <PerformanceContent cycles={cycles} reviews={reviews} />
   )
 }

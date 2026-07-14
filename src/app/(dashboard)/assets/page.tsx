@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { AssetsContent } from './assets-content'
 
 export default async function AssetsPage() {
@@ -18,8 +17,6 @@ export default async function AssetsPage() {
   const assets = await getAssets(profile.org_id)
 
   return (
-    <DashboardLayout>
-      <AssetsContent assets={assets} />
-    </DashboardLayout>
+    <AssetsContent assets={assets} />
   )
 }

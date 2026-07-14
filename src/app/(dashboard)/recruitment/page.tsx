@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { RecruitmentContent } from './recruitment-content'
 
 export default async function RecruitmentPage() {
@@ -18,8 +17,6 @@ export default async function RecruitmentPage() {
   const jobOpenings = await getJobOpenings(profile.org_id)
 
   return (
-    <DashboardLayout>
-      <RecruitmentContent jobOpenings={jobOpenings} />
-    </DashboardLayout>
+    <RecruitmentContent jobOpenings={jobOpenings} />
   )
 }
