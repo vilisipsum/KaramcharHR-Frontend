@@ -97,7 +97,7 @@ export function CopilotChat({ className }: { className?: string }) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-indigo hover:bg-[#3730A3] text-slate-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center"
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-indigo hover:bg-[#3730A3] shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center"
           aria-label="Open Copilot"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -158,7 +158,7 @@ export function CopilotChat({ className }: { className?: string }) {
               <button
                 type="submit"
                 disabled={streaming || !input.trim()}
-                className="px-4 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
+                className="px-4 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5m0 0l-7 7m7-7l7 7" />
@@ -176,7 +176,7 @@ export function CopilotFloatingButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="w-14 h-14 rounded-full bg-indigo hover:bg-[#3730A3] text-slate-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center"
+      className="w-14 h-14 rounded-full bg-indigo hover:bg-[#3730A3] shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center"
       aria-label="Open Copilot"
     >
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

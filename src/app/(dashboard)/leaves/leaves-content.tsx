@@ -135,7 +135,7 @@ export function LeavesContent({ balances, leaveRequests, leaveTypes, stats }: Le
                 <input value={formData.reason} onChange={e => setFormData({...formData, reason: e.target.value})} placeholder="Reason for leave" className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-white/30 outline-none focus:border-amber-500/50" />
               </div>
               <div className="flex gap-3">
-                <button type="submit" className="px-6 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium hover:shadow-lg transition-all">Submit Request</button>
+                <button type="submit" className="px-6 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium hover:shadow-lg transition-all">Submit Request</button>
                 <button type="button" onClick={() => setShowForm(false)} className="px-6 py-2.5 rounded-xl bg-white border border-slate-200/60 text-slate-500 hover:text-slate-800 transition-all">Cancel</button>
               </div>
             </form>

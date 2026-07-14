@@ -135,7 +135,7 @@ export default function CopilotPage() {
             <button
               type="submit"
               disabled={streaming || !input.trim()}
-              className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all whitespace-nowrap"
+              className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all whitespace-nowrap"
             >
               {streaming ? 'Thinking...' : 'Send'}
             </button>

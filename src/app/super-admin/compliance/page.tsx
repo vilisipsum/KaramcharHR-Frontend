@@ -250,7 +250,7 @@ CREATE POLICY "Allow write for super_admin" ON platform_settings
               <button
                 onClick={handleSaveSlabs}
                 disabled={isPending}
-                className="flex-1 py-2 bg-indigo text-slate-800 text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                className="flex-1 py-2 bg-indigo text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
               >
                 {isPending ? 'Saving...' : 'Save Configuration'}
               </button>

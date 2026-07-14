@@ -134,7 +134,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
 
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo text-slate-800 text-sm font-bold hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer w-full sm:w-auto justify-center"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo text-white text-sm font-bold hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer w-full sm:w-auto justify-center"
         >
           <UserPlus className="w-4 h-4" />
           Add Employee
@@ -301,7 +301,7 @@ export function EmployeesContent({ employees, total, page, limit, search, depart
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="flex-1 py-2.5 bg-indigo text-slate-800 text-sm font-bold rounded-xl hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
+                  className="flex-1 py-2.5 bg-indigo text-white text-sm font-bold rounded-xl hover:bg-[#3730A3] hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
                 >
                   {isPending ? 'Onboarding...' : 'Onboard Employee'}
                 </button>

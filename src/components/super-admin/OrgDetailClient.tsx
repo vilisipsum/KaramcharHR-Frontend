@@ -157,7 +157,7 @@ export function OrgDetailClient({ org, employees, features, auditLogs, allFlags 
               <button
                 onClick={handleWipe}
                 disabled={confirmName !== org.name || isPending}
-                className="flex-1 py-2 bg-rose-500 text-slate-800 text-xs font-bold rounded-xl hover:bg-rose-600 disabled:opacity-30 disabled:hover:bg-rose-500 cursor-pointer transition-colors"
+                className="flex-1 py-2 bg-rose-500 text-white text-xs font-bold rounded-xl hover:bg-rose-600 disabled:opacity-30 disabled:hover:bg-rose-500 cursor-pointer transition-colors"
               >
                 {isPending ? 'Purging Tenant...' : 'Permanently Purge Data'}
               </button>
@@ -244,7 +244,7 @@ export function OrgDetailClient({ org, employees, features, auditLogs, allFlags 
                   <input type="number" name="trial_days" defaultValue={14} min={1} max={365}
                     className="w-full px-3 py-2 bg-white border border-slate-200/60/30 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-indigo/50" />
                 </div>
-                <button type="submit" className="w-full py-2 bg-indigo text-slate-800 text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+                <button type="submit" className="w-full py-2 bg-indigo text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
                   Update Plan
                 </button>
               </form>

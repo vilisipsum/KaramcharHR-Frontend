@@ -44,7 +44,7 @@ export default function ExpensesPage() {
           <h1 className="text-2xl font-bold text-slate-800">Expense Claims</h1>
           <p className="text-slate-500">Submit and track expense reimbursements</p>
         </div>
-        <button onClick={() => setShowForm(!showForm)} className="px-5 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium hover:shadow-lg transition-all">
+        <button onClick={() => setShowForm(!showForm)} className="px-5 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium hover:shadow-lg transition-all">
           {showForm ? 'Cancel' : '+ New Claim'}
         </button>
       </div>
@@ -71,7 +71,7 @@ export default function ExpensesPage() {
               <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} required className="w-full bg-white border border-slate-200/60 rounded-xl px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-amber-500/50" />
             </div>
           </div>
-          <button type="submit" className="px-6 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium hover:shadow-lg transition-all">Submit Claim</button>
+          <button type="submit" className="px-6 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium hover:shadow-lg transition-all">Submit Claim</button>
         </form>
       )}
 

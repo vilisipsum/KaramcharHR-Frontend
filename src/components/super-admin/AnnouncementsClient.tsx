@@ -97,7 +97,7 @@ export function AnnouncementsClient({ announcements }: { announcements: Announce
             </div>
             <div className="flex gap-3">
               <button type="submit" disabled={isPending}
-                className="px-6 py-2 bg-indigo text-slate-800 text-sm font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50">
+                className="px-6 py-2 bg-indigo text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50">
                 Publish
               </button>
               <button type="button" onClick={() => setShowForm(false)}

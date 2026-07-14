@@ -79,7 +79,7 @@ export default function ResumeScreeningPage() {
           <button
             onClick={parse}
             disabled={loading || !resumeText.trim()}
-            className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
+            className="px-6 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
           >
             {loading ? 'Parsing...' : 'Analyze Resume'}
           </button>

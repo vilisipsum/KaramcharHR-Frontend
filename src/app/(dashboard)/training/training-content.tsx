@@ -35,7 +35,7 @@ export function TrainingContent({ trainings }: TrainingContentProps) {
           <h1 className="text-2xl font-bold text-slate-800">Learning Management</h1>
           <p className="text-slate-500">Corporate training courses, certifications, and skill tracking</p>
         </div>
-        <button className="px-5 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium hover:shadow-lg transition-all">+ New Course</button>
+        <button className="px-5 py-2.5 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium hover:shadow-lg transition-all">+ New Course</button>
       </div>
 
       <div className="flex gap-2">

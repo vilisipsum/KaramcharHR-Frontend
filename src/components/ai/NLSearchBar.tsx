@@ -73,7 +73,7 @@ export function NLSearchBar() {
               <button
                 type="submit"
                 disabled={loading || !query.trim()}
-                className="px-5 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-slate-800 text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
+                className="px-5 py-3 rounded-xl bg-indigo hover:bg-[#3730A3] text-sm font-medium disabled:opacity-50 hover:shadow-lg transition-all"
               >
                 {loading ? (
                   <span className="w-4 h-4 block border-2 border-white/30 border-t-white rounded-full animate-spin" />
