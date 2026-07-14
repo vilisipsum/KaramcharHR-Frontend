@@ -14,13 +14,19 @@ export async function login(prevState: AuthState, formData: FormData): Promise<A
   const { error } = await supabase.auth.signInWithPassword({ email, password })
   if (error) return { error: error.message }
 
-  // Check if user has an org set up
+  // Check user profile for role and org
   const { data: { user } } = await supabase.auth.getUser()
   const { data: profile } = await supabase
     .from('profiles')
-    .select('org_id')
+    .select('org_id, role')
     .eq('id', user?.id)
     .single()
+
+  // Super admins go directly to the super admin control panel
+  if (profile?.role === 'super_admin') {
+    revalidatePath('/', 'layout')
+    redirect('/super-admin')
+  }
 
   if (!profile?.org_id) {
     revalidatePath('/', 'layout')
