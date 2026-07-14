@@ -5,16 +5,17 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'KaramcharHR Portal | Indian Employee-First HRMS Platform',
-    template: '%s | KaramcharHR'
+    default: 'KaramcharHR Portal | Employee Self-Service & HRMS Login',
+    template: '%s | KaramcharHR Portal'
   },
-  description: 'Access your KaramcharHR portal. Manage payroll, attendance tracking, leave requests, employee profiles, and statutory compliance from one intelligent dashboard.',
+  description: 'Log in to your KaramcharHR employee portal. Access Indian payroll details, claim expenses, submit leave requests (CL/SL/EL), and track geo-fenced attendance clock-ins.',
   keywords: [
     "KaramcharHR Login",
     "Employee Portal India",
     "HR Dashboard",
     "Payroll Management Login",
     "Self Service HR Portal",
+    "employee self-service ESS portal online",
     "KaramcharHR app"
   ],
   icons: { icon: '/icon.svg' },
@@ -26,14 +27,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://app.karamcharhr.online",
-    title: "KaramcharHR Portal | Indian Employee-First HRMS",
-    description: "Access payroll, attendance tracking, leave requests, and employee self-service.",
+    title: "KaramcharHR Portal | Employee Self-Service & HRMS Login",
+    description: "Log in to your KaramcharHR employee portal. Access Indian payroll details, claim expenses, submit leave requests, and track attendance.",
     siteName: "KaramcharHR Portal",
   },
   twitter: {
     card: "summary",
     title: "KaramcharHR Portal",
-    description: "Indian Employee-First HRMS Portal",
+    description: "KaramcharHR Employee Self-Service Portal",
   },
   alternates: {
     canonical: "https://app.karamcharhr.online",
