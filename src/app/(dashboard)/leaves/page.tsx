@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { LeavesContent } from './leaves-content'
 
 export default async function LeavesPage() {
@@ -24,8 +23,6 @@ export default async function LeavesPage() {
   ])
 
   return (
-    <DashboardLayout>
-      <LeavesContent stats={stats} balances={leaveBalances} leaveTypes={leaveTypes} leaveRequests={leaveRequests.data} />
-    </DashboardLayout>
+    <LeavesContent stats={stats} balances={leaveBalances} leaveTypes={leaveTypes} leaveRequests={leaveRequests.data} />
   )
 }

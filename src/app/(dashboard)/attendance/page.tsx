@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { AttendanceContent } from './attendance-content'
 
 export default async function AttendancePage() {
@@ -8,7 +7,7 @@ export default async function AttendancePage() {
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('org_id')
+    .select('org_id, employee_id')
     .eq('id', user.id)
     .single()
 
@@ -22,8 +21,6 @@ export default async function AttendancePage() {
   ])
 
   return (
-    <DashboardLayout>
-      <AttendanceContent stats={stats} attendance={attendance} />
-    </DashboardLayout>
+    <AttendanceContent stats={stats} attendance={attendance} employeeId={profile.employee_id} />
   )
 }

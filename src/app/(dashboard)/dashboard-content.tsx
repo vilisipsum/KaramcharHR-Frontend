@@ -1,10 +1,13 @@
 'use client'
 
+import { useState, useEffect, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import { StatCard } from '@/components/ui/StatCard'
 import { ProgressRing } from '@/components/ui/ProgressRing'
 import { StatusChip } from '@/components/ui/StatusChip'
 import { Avatar } from '@/components/ui/Avatar'
 import { LeavePredictWidget } from '@/components/ai/LeavePredictWidget'
+import { punchIn, punchOut } from '@/app/attendance/actions'
 
 interface DashboardContentProps {
   stats: {
@@ -27,14 +30,80 @@ interface DashboardContentProps {
     taken: number
     pending: number
   }>
+  employeeId: string | null
 }
 
-export function DashboardContent({ stats, attendance, leaveBalances }: DashboardContentProps) {
+export function DashboardContent({ stats, attendance, leaveBalances, employeeId }: DashboardContentProps) {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+
+  // Find logged-in user's record
+  const userRecord = employeeId ? attendance.find(a => a.employee_id === employeeId) : null
+  const [elapsed, setElapsed] = useState('0h 0m')
+  const [percent, setPercent] = useState(0)
+
+  useEffect(() => {
+    if (!userRecord?.clock_in || userRecord?.clock_out) {
+      setElapsed('0h 0m')
+      setPercent(0)
+      return
+    }
+
+    const updateTimer = () => {
+      const diffMs = Date.now() - new Date(userRecord.clock_in!).getTime()
+      const totalMin = Math.max(0, Math.floor(diffMs / 60000))
+      const hours = Math.floor(totalMin / 60)
+      const mins = totalMin % 60
+      setElapsed(`${hours}h ${mins}m`)
+      
+      // Assume 8-hour workday = 100%
+      const pct = Math.min(Math.round((totalMin / 480) * 100), 100)
+      setPercent(pct)
+    }
+
+    updateTimer()
+    const interval = setInterval(updateTimer, 60000)
+    return () => clearInterval(interval)
+  }, [userRecord])
+
+  const showToast = (message: string, type: 'success' | 'error') => {
+    setToast({ message, type })
+    setTimeout(() => setToast(null), 3500)
+  }
+
+  const handlePunch = () => {
+    startTransition(async () => {
+      if (!userRecord) {
+        const res = await punchIn()
+        if (res.error) showToast(res.error, 'error')
+        else {
+          showToast(res.success!, 'success')
+          router.refresh()
+        }
+      } else {
+        const res = await punchOut()
+        if (res.error) showToast(res.error, 'error')
+        else {
+          showToast(res.success!, 'success')
+          router.refresh()
+        }
+      }
+    })
+  }
+
   const presentToday = `${stats.presentCount} / ${stats.totalEmployees}`
-  const clockInRecord = attendance.find(a => a.clock_in)
 
   return (
     <>
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl ${
+          toast.type === 'success' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-300' : 'bg-rose-500/20 border border-rose-500/30 text-rose-300'
+        }`}>
+          {toast.message}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard label="Present today" value={presentToday} trend={`${stats.totalEmployees ? Math.round((stats.presentCount / stats.totalEmployees) * 100) : 0}% headcount`} />
         <StatCard label="On leave" value={stats.onLeaveCount}>
@@ -66,8 +135,20 @@ export function DashboardContent({ stats, attendance, leaveBalances }: Dashboard
         </div>
 
         <div className="glass p-5 flex flex-col items-center justify-center gap-4">
-        <ProgressRing value={stats.totalEmployees > 0 ? Math.round((stats.presentCount / stats.totalEmployees) * 100) : 0} label={clockInRecord?.clock_in ? new Date(clockInRecord.clock_in).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '0h 0m'} sublabel="CLOCKED IN" />
-          <button className="btn btn-primary w-full sm:w-auto">Punch Out</button>
+          <ProgressRing value={percent} label={elapsed} sublabel={userRecord?.clock_out ? "CLOCKED OUT" : userRecord?.clock_in ? "CLOCKED IN" : "NOT CLOCKED IN"} />
+          {userRecord?.clock_out ? (
+            <button disabled className="btn bg-white/10 text-muted-foreground w-full sm:w-auto cursor-not-allowed">
+              Punched Out for Today
+            </button>
+          ) : (
+            <button
+              onClick={handlePunch}
+              disabled={isPending}
+              className={`btn btn-primary w-full sm:w-auto cursor-pointer ${isPending ? 'opacity-50' : ''}`}
+            >
+              {isPending ? 'Processing...' : userRecord?.clock_in ? 'Punch Out' : 'Punch In'}
+            </button>
+          )}
         </div>
       </div>
 

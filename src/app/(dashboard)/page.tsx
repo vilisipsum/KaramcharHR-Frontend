@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation'
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { DashboardContent } from './dashboard-content'
 
 export default async function Dashboard() {
@@ -24,8 +23,6 @@ export default async function Dashboard() {
   ])
 
   return (
-    <DashboardLayout>
-      <DashboardContent stats={stats} attendance={attendance} leaveBalances={leaveBalances} />
-    </DashboardLayout>
+    <DashboardContent stats={stats} attendance={attendance} leaveBalances={leaveBalances} employeeId={profile.employee_id} />
   )
 }

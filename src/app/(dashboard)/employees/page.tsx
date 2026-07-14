@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { EmployeesContent } from './employees-content'
 
 export default async function EmployeesPage({ searchParams }: { searchParams: Promise<{ search?: string; page?: string }> }) {
@@ -27,16 +26,14 @@ export default async function EmployeesPage({ searchParams }: { searchParams: Pr
   ])
 
   return (
-    <DashboardLayout>
-      <EmployeesContent 
-        employees={employeesResult.data} 
-        total={employeesResult.total}
-        page={employeesResult.page}
-        limit={employeesResult.limit}
-        search={search}
-        departments={departments}
-        designations={designations}
-      />
-    </DashboardLayout>
+    <EmployeesContent 
+      employees={employeesResult.data} 
+      total={employeesResult.total}
+      page={employeesResult.page}
+      limit={employeesResult.limit}
+      search={search}
+      departments={departments}
+      designations={designations}
+    />
   )
 }

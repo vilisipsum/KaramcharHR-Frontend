@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { OrgChartContent } from './org-chart-content'
 
 export default async function OrgChartPage() {
@@ -18,8 +17,6 @@ export default async function OrgChartPage() {
   const orgChart = await getOrgChart(profile.org_id)
 
   return (
-    <DashboardLayout>
-      <OrgChartContent orgChart={orgChart} />
-    </DashboardLayout>
+    <OrgChartContent orgChart={orgChart} />
   )
 }

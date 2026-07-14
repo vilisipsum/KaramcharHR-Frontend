@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { TrainingContent } from './training-content'
 
 export default async function TrainingPage() {
@@ -18,8 +17,6 @@ export default async function TrainingPage() {
   const trainings = await getTrainings(profile.org_id)
 
   return (
-    <DashboardLayout>
-      <TrainingContent trainings={trainings} />
-    </DashboardLayout>
+    <TrainingContent trainings={trainings} />
   )
 }

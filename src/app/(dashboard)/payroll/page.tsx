@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { PayrollContent } from './payroll-content'
 
 export default async function PayrollPage() {
@@ -23,12 +22,10 @@ export default async function PayrollPage() {
   ])
 
   return (
-    <DashboardLayout>
-      <PayrollContent 
-        payrollRuns={payrollRuns}
-        employeeSalary={employeeSalary}
-        salaryStructures={salaryStructures}
-      />
-    </DashboardLayout>
+    <PayrollContent 
+      payrollRuns={payrollRuns}
+      employeeSalary={employeeSalary}
+      salaryStructures={salaryStructures}
+    />
   )
 }
